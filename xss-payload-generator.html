@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="language" content="English">
+    <title>🥷 XSSNow - XSS Payload Generator & WAF Bypass Tool</title>
+    <meta name="description" content="Advanced XSS payload generator for security researchers. Create context-aware payloads with WAF bypass techniques, encoding evasions, and custom length optimization.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="XSSNow - XSS Payload Generator">
+    <meta property="og:description" content="Advanced XSS payload generator with WAF bypass techniques and context-aware payload creation for security research.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xssnow.in/xss-payload-generator.html">
+    <meta property="og:image" content="https://xssnow.in/assets/xss_now_logo.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XSSNow - XSS Payload Generator">
+    <meta name="twitter:description" content="Advanced XSS payload generator with WAF bypass techniques for security research.">
+
+    <!-- Additional SEO -->
+    <meta name="keywords" content="XSS Generator, Payload Generator, WAF Bypass, Context-aware XSS, Security Tools, Penetration Testing Tools">
+    <link rel="canonical" href="https://xssnow.in/xss-payload-generator.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/ninja.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <!-- Matrix Background Animation -->
+    <div id="matrix-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--neon-green);">
+                    <i class="fas fa-user-ninja" style="color: var(--neon-green);"></i>
+                    <span class="brand-text" style="color: var(--neon-green);">XSSNow</span>
+                    <span class="version">v1.0</span>
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="payloads.html" class="nav-link">Payloads</a>
+                <a href="xss-payload-generator.html" class="nav-link active">Generator</a>
+                <a href="contributors.html" class="nav-link">Contributors</a>
+                <a href="docs.html" class="nav-link">Docs</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://github.com/dr34mhacks/xssnow" class="github-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>Fork & Contribute</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Generator Header -->
+    <section class="generator-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <span class="gradient-text">AI-Powered XSS Payload Generator</span>
+                </h1>
+                <p class="page-description">
+                    Generate context-aware XSS payloads instantly with advanced bypass techniques for penetration testing and security research.
+                </p>
+
+                <div class="generator-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">876+</div>
+                        <div class="stat-label">Base Payloads</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Contexts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Payload Generator -->
+    <section class="payload-generator">
+        <div class="container">
+            <div class="generator-container">
+                <div class="generator-inputs">
+                    <div class="input-group">
+                        <label for="context">Injection Context</label>
+                        <select id="context">
+                            <option value="html">HTML Context</option>
+                            <option value="javascript">JavaScript Context</option>
+                            <option value="css">CSS Context</option>
+                            <option value="url">URL Parameter</option>
+                            <option value="attribute">HTML Attribute</option>
+                            <option value="dom">DOM Context</option>
+                            <option value="json">JSON Context</option>
+                            <option value="xml">XML Context</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-group">
+                        <label for="waf">WAF Type</label>
+                        <select id="waf">
+                            <option value="none">No WAF</option>
+                            <option value="cloudflare">Cloudflare</option>
+                            <option value="aws">AWS WAF</option>
+                            <option value="akamai">Akamai</option>
+                            <option value="modsecurity">ModSecurity</option>
+                            <option value="f5">F5 ASM</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-group">
+                        <label>Character Restrictions</label>
+                        <div class="restriction-checkboxes">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="noAngles">
+                                <span class="checkmark"></span>
+                                No &lt; &gt; brackets
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="noQuotes">
+                                <span class="checkmark"></span>
+                                No quotes (" ')
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="noParens">
+                                <span class="checkmark"></span>
+                                No parentheses ( )
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="noSlash">
+                                <span class="checkmark"></span>
+                                No forward slash /
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="noSemicolon">
+                                <span class="checkmark"></span>
+                                No semicolon ;
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="lengthLimit">
+                                <span class="checkmark"></span>
+                                Length limit
+                            </label>
+                        </div>
+                        <div class="length-input-group" id="lengthInputGroup" style="display: none;">
+                            <label for="maxLength">Maximum Length:</label>
+                            <input type="number" id="maxLength" min="10" max="500" value="100" placeholder="100">
+                        </div>
+                    </div>
+
+                    <button class="generate-btn" id="generatePayload">
+                        <i class="fas fa-magic"></i>
+                        Generate Payload
+                    </button>
+                </div>
+
+                <div class="generator-output">
+                    <div class="output-header">
+                        <span>Generated Payloads</span>
+                        <div class="output-actions">
+                            <button class="export-btn" id="exportPayloads" title="Export to file">
+                                <i class="fas fa-download"></i>
+                                Export
+                            </button>
+                            <button class="refresh-btn" id="refreshPayload" title="Generate new variants">
+                                <i class="fas fa-refresh"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payloads-container" id="payloadOutput">
+                        <div class="placeholder-message">
+                            Click "Generate Payload" to create XSS payloads tailored to your specifications...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payload History -->
+            <div class="payload-history">
+                <h3>Generated Payload History</h3>
+                <div class="history-list" id="payloadHistory">
+                    <div class="empty-history">
+                        <i class="fas fa-history"></i>
+                        <p>Your generated payloads will appear here</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Generator Tips -->
+            <div class="generator-tips">
+                <h3>💡 Pro Tips</h3>
+                <div class="tips-grid">
+                    <div class="tip-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <h4>Context Matters</h4>
+                        <p>Choose the correct injection context for maximum effectiveness</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Test Responsibly</h4>
+                        <p>Only use generated payloads on systems you own or have permission to test</p>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-bug"></i>
+                        <h4>Export & Document</h4>
+                        <p>Use the export feature to save payloads and document findings for reporting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🥷 XSSNow</h3>
+                    <p>The most comprehensive XSS payload database for ethical security research and education.</p>
+                    <div class="github-star">
+                        <a href="https://github.com/dr34mhacks/xssnow" target="_blank" class="star-btn">
+                            <i class="fas fa-star"></i> Leave us a star
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="payloads.html">XSS Payloads</a></li>
+                        <li><a href="xss-payload-generator.html">Payload Generator</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="contributors.html">Contributors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Docs</h4>
+                    <ul>
+                        <li><a href="docs.html#fundamentals">XSS Fundamentals</a></li>
+                        <li><a href="docs.html#bypass-techniques">Bypass Techniques</a></li>
+                        <li><a href="docs.html#waf-bypasses">WAF Bypasses</a></li>
+                        <li><a href="docs.html#prevention">Prevention Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contribute</h4>
+                    <ul>
+                        <li><a href="https://github.com/dr34mhacks/xssnow" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/blob/main/CONTRIBUTING.md" target="_blank">Add Payloads</a></li>
+                        <li><a href="contributors.html">Join Community</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://www.linkedin.com/in/sid-j0shi/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi</a> (dr34mhacks)</p>
+                    <p class="disclaimer">⚠️ For educational and ethical security testing only. Use responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/author.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="language" content="English">
+    <title>🥷 XSSNow - Complete XSS Payload Database</title>
+    <meta name="description" content="Browse and filter through curated XSS payloads with advanced filtering, search capabilities, and real-world tested attack vectors for security research.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="XSSNow - XSS Payload Database">
+    <meta property="og:description" content="Browse and filter through curated XSS payloads with advanced search capabilities for security research and penetration testing.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xssnow.in/payloads.html">
+    <meta property="og:image" content="https://xssnow.in/assets/xss_now_logo.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XSSNow - XSS Payload Database">
+    <meta name="twitter:description" content="Browse curated XSS payloads for security research and penetration testing.">
+
+    <!-- Additional SEO -->
+    <meta name="keywords" content="XSS payloads, Cross-Site Scripting, Security Testing, WAF Bypass, Penetration Testing">
+    <link rel="canonical" href="https://xssnow.in/payloads.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/ninja.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/payloads-modern.css">
+</head>
+<body>
+    <!-- Matrix Background Animation -->
+    <div id="matrix-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--neon-green);">
+                    <i class="fas fa-user-ninja" style="color: var(--neon-green);"></i>
+                    <span class="brand-text" style="color: var(--neon-green);">XSSNow</span>
+                    <span class="version">v1.0</span>
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="payloads.html" class="nav-link active">Payloads</a>
+                <a href="xss-payload-generator.html" class="nav-link">Generator</a>
+                <a href="contributors.html" class="nav-link">Contributors</a>
+                <a href="docs.html" class="nav-link">Docs</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://github.com/dr34mhacks/xssnow" class="github-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>Fork & Contribute</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Payloads Database Interface -->
+    <div class="payloads-interface">
+        <!-- Sidebar Filters -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>🔍 Filters</h2>
+                <div class="stats-mini">
+                    <span id="totalCount">876</span> payloads
+                </div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="payloadSearch" placeholder="Search payloads..." autocomplete="off">
+                    <button class="clear-search" id="clearSearch" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Groups -->
+            <div class="filter-groups">
+                <!-- Category Filter -->
+                <div class="filter-group">
+                    <h3>Category</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="all" checked>
+                            <span>All Categories</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="basic">
+                            <span>Basic XSS</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="dom">
+                            <span>DOM-based</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="bypass">
+                            <span>Filter Bypass</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="polyglot">
+                            <span>Polyglot</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="radio" name="category" value="non-english">
+                            <span>🌍 Non-English</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Context Filter -->
+                <div class="filter-group">
+                    <h3>Context</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="context" value="html" checked>
+                            <span>HTML</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="context" value="javascript" checked>
+                            <span>JavaScript</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="context" value="css" checked>
+                            <span>CSS</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="context" value="attribute" checked>
+                            <span>Attribute</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="context" value="url" checked>
+                            <span>URL</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Special Features -->
+                <div class="filter-group">
+                    <h3>Features</h3>
+                    <div class="filter-options">
+                        <label class="filter-option">
+                            <input type="checkbox" name="feature" value="no-parentheses">
+                            <span>No Parentheses</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="feature" value="no-quotes">
+                            <span>No Quotes</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="feature" value="no-brackets">
+                            <span>No &lt;&gt;</span>
+                        </label>
+                        <label class="filter-option">
+                            <input type="checkbox" name="feature" value="short">
+                            <span>Short (&lt;50 chars)</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="sidebar-actions">
+                <button class="btn-reset" id="clearFilters">
+                    <i class="fas fa-refresh"></i>
+                    Reset Filters
+                </button>
+                <button class="btn-download" id="downloadFiltered">
+                    <i class="fas fa-download"></i>
+                    Export (<span id="downloadCount">876</span>)
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-header">
+                <h1>🥷 XSS Payload Database</h1>
+                <p>Comprehensive collection of XSS payloads for security research</p>
+                <div class="view-controls">
+                    <button class="view-toggle active" data-view="cards">
+                        <i class="fas fa-th-large"></i>
+                    </button>
+                    <button class="view-toggle" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Payloads Container -->
+            <div class="payloads-container" id="payloadsContainer">
+                <div class="loading-state">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Loading payloads...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🥷 XSSNow</h3>
+                    <p>The most comprehensive XSS payload database for ethical security research and education.</p>
+                    <div class="github-star">
+                        <a href="https://github.com/dr34mhacks/xssnow" target="_blank" class="star-btn">
+                            <i class="fas fa-star"></i> Leave us a star
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="payloads.html">XSS Payloads</a></li>
+                        <li><a href="xss-payload-generator.html">Payload Generator</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="contributors.html">Contributors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Docs</h4>
+                    <ul>
+                        <li><a href="docs.html#fundamentals">XSS Fundamentals</a></li>
+                        <li><a href="docs.html#bypass-techniques">Bypass Techniques</a></li>
+                        <li><a href="docs.html#waf-bypasses">WAF Bypasses</a></li>
+                        <li><a href="docs.html#prevention">Prevention Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contribute</h4>
+                    <ul>
+                        <li><a href="https://github.com/dr34mhacks/xssnow" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/blob/main/CONTRIBUTING.md" target="_blank">Add Payloads</a></li>
+                        <li><a href="contributors.html">Join Community</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://www.linkedin.com/in/sid-j0shi/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi</a> (dr34mhacks)</p>
+                    <p class="disclaimer">⚠️ For educational and ethical security testing only. Use responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="js/payloads.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/author.js"></script>
+</body>
+</html>

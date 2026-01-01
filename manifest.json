@@ -1,0 +1,86 @@
+{
+  "name": "XSSNow - Ultimate XSS Payload Arsenal",
+  "short_name": "XSSNow",
+  "description": "Community-driven XSS vulnerability testing platform with curated payloads, advanced generator, WAF bypass techniques, and security research tools",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ff41",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["security", "developer tools", "productivity"],
+  "icons": [
+    {
+      "src": "/assets/ninja.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Payload Database",
+      "short_name": "Payloads",
+      "description": "Browse curated XSS payloads",
+      "url": "/payloads.html",
+      "icons": [
+        {
+          "src": "/assets/ninja.svg",
+          "sizes": "any"
+        }
+      ]
+    },
+    {
+      "name": "Payload Generator",
+      "short_name": "Generator",
+      "description": "Generate custom XSS payloads",
+      "url": "/xss-payload-generator.html",
+      "icons": [
+        {
+          "src": "/assets/ninja.svg",
+          "sizes": "any"
+        }
+      ]
+    },
+    {
+      "name": "Documentation",
+      "short_name": "Docs",
+      "description": "XSS security documentation",
+      "url": "/docs.html",
+      "icons": [
+        {
+          "src": "/assets/ninja.svg",
+          "sizes": "any"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/assets/screenshot-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "url": "https://xssnow.in"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
+}

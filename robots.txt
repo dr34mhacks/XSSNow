@@ -1,0 +1,27 @@
+# XSSNow Robots.txt - Educational Security Research Platform
+
+User-agent: *
+Allow: /
+Crawl-delay: 1
+
+# Disallow resource files to improve crawl efficiency
+Disallow: /js/
+Disallow: /css/
+Disallow: /assets/
+
+# Allow important files for SEO
+Allow: /assets/ninja.svg
+Allow: /manifest.json
+
+# Disallow development files
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: *.log
+Disallow: *.tmp
+
+# Sitemap location
+Sitemap: https://xssnow.in/sitemap.xml
+
+# Educational disclaimer
+# This site contains XSS payloads for authorized security testing only
+# All content is intended for defensive cybersecurity purposes

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="language" content="English">
+    <title>XSSNow - Ultimate XSS Payload Arsenal & Security Research Platform</title>
+    <meta name="description" content="Community-driven XSS vulnerability testing platform with curated payloads, advanced generator, WAF bypass techniques, and security research tools. Perfect for penetration testing and bug bounty hunting.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="XSSNow - Ultimate XSS Payload Arsenal">
+    <meta property="og:description" content="Community-driven XSS vulnerability testing platform with curated payloads, advanced generator, and WAF bypass techniques for security research.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xssnow.in">
+    <meta property="og:image" content="https://xssnow.in/assets/xss_now_logo.png">
+    <meta property="og:site_name" content="XSSNow">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="XSSNow - Ultimate XSS Payload Arsenal">
+    <meta name="twitter:description" content="Community-driven XSS vulnerability testing platform with curated payloads and WAF bypass techniques.">
+    <meta name="twitter:image" content="https://xssnow.in/assets/xss_now_logo.png">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="keywords" content="XSS, Cross-Site Scripting, Security Testing, Penetration Testing, Bug Bounty, WAF Bypass, Security Research, Ethical Hacking">
+    <meta name="author" content="Sid Joshi (dr34mhacks)">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://xssnow.in">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/ninja.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- Manifest for PWA -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Performance hints -->
+    <link rel="dns-prefetch" href="//github.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    <!-- Critical CSS (inline for performance) -->
+    <style>
+        body{margin:0;padding:0;background:#0a0a0a;color:#fff;font-family:Inter,sans-serif;overflow-x:hidden}
+        .navbar{position:fixed;top:0;width:100%;background:rgba(17,17,17,.95);backdrop-filter:blur(10px);z-index:1000;height:80px}
+        .hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center}
+        .loading{position:fixed;inset:0;background:#0a0a0a;display:flex;align-items:center;justify-content:center;z-index:9999}
+    </style>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/seo-components.css">
+</head>
+<body>
+    <!-- Matrix Background Animation -->
+    <div id="matrix-bg"></div>
+
+    <main id="main-content">
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--neon-green);">
+                    <i class="fas fa-user-ninja" style="color: var(--neon-green);"></i>
+                    <span class="brand-text" style="color: var(--neon-green);">XSSNow</span>
+                    <span class="version">v1.0</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="payloads.html" class="nav-link">Payloads</a>
+                <a href="xss-payload-generator.html" class="nav-link">Generator</a>
+                <a href="contributors.html" class="nav-link">Contributors</a>
+                <a href="docs.html" class="nav-link">Docs</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://github.com/dr34mhacks/xssnow" class="github-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>Fork & Contribute</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-icon">🔥</span>
+                    <span>Most Comprehensive XSS Arsenal</span>
+                </div>
+
+                <h1 class="hero-title">
+                    <span class="gradient-text">XSSNow</span>
+                    <br>The Ultimate XSS Payload Database
+                </h1>
+
+                <p class="hero-description">
+                    One-stop solution for security researchers, penetration testers, and bug bounty hunters.
+                    Featuring 5000+ curated payloads, advanced bypass techniques, and real-time payload generation.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">876+</div>
+                        <div class="stat-label">XSS Payloads</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Attack Contexts</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">WAF Bypasses</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Research Lab</div>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='payloads.html'">
+                        <i class="fas fa-rocket"></i>
+                        Explore Payloads
+                    </button>
+                    <button class="btn btn-secondary" onclick="window.location.href='xss-payload-generator.html'">
+                        <i class="fas fa-wand-magic-sparkles"></i>
+                        Generate Payload
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="terminal-window">
+                    <div class="terminal-header">
+                        <div class="terminal-controls">
+                            <span class="control close"></span>
+                            <span class="control minimize"></span>
+                            <span class="control maximize"></span>
+                        </div>
+                        <div class="terminal-title">ninja@xssnow:~$</div>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="prompt">ninja@xssnow:~$</span>
+                            <span class="command" id="typewriter"></span>
+                            <span class="cursor">|</span>
+                        </div>
+                        <div id="terminal-output"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Bug Bounty Success Stories -->
+    <section class="bounty-stories">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="gradient-text">💰 Bug Bounty Success Stories</span>
+                </h2>
+                <p class="section-subtitle">Understanding the impact and value of XSS research in bug bounty programs</p>
+            </div>
+
+            <div class="stories-zigzag">
+                <div class="story-item left">
+                    <div class="story-content">
+                        <div class="story-badge">🏆 Critical Impact</div>
+                        <h3>Social Media Platform XSS</h3>
+                        <p>Researchers have discovered DOM-based XSS vulnerabilities in major social platforms that could affect millions of users, enabling account takeovers through malicious links.</p>
+                        <div class="story-stats">
+                            <span class="bounty-amount">$5k-$25k</span>
+                            <span class="researcher">Typical Range</span>
+                        </div>
+                    </div>
+                    <div class="story-visual">
+                        <div class="bounty-card facebook">
+                            <div class="card-header">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Social Platforms</span>
+                            </div>
+                            <div class="card-amount">$15,000</div>
+                            <div class="card-type">DOM XSS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-item right">
+                    <div class="story-visual">
+                        <div class="bounty-card google">
+                            <div class="card-header">
+                                <i class="fab fa-chrome"></i>
+                                <span>Browser Security</span>
+                            </div>
+                            <div class="card-amount">$30,000</div>
+                            <div class="card-type">Universal XSS</div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <div class="story-badge">🔥 Browser Security</div>
+                        <h3>Browser Universal XSS</h3>
+                        <p>Universal XSS vulnerabilities in browser engines represent some of the highest-impact discoveries, affecting any website visited by users and earning substantial rewards.</p>
+                        <div class="story-stats">
+                            <span class="bounty-amount">$10k-$50k</span>
+                            <span class="researcher">High Impact</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-item left">
+                    <div class="story-content">
+                        <div class="story-badge">⚡ Payment Security</div>
+                        <h3>Financial Platform XSS</h3>
+                        <p>XSS vulnerabilities in financial platforms are particularly valuable due to their potential for account takeover and access to sensitive financial data.</p>
+                        <div class="story-stats">
+                            <span class="bounty-amount">$8k-$20k</span>
+                            <span class="researcher">Financial Sector</span>
+                        </div>
+                    </div>
+                    <div class="story-visual">
+                        <div class="bounty-card paypal">
+                            <div class="card-header">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Financial Platforms</span>
+                            </div>
+                            <div class="card-amount">$12,000</div>
+                            <div class="card-type">Stored XSS</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="story-item right">
+                    <div class="story-visual">
+                        <div class="bounty-card microsoft">
+                            <div class="card-header">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Enterprise Security</span>
+                            </div>
+                            <div class="card-amount">$18,000</div>
+                            <div class="card-type">CSP Bypass</div>
+                        </div>
+                    </div>
+                    <div class="story-content">
+                        <div class="story-badge">🛡️ Enterprise Impact</div>
+                        <h3>Enterprise CSP Bypasses</h3>
+                        <p>Content Security Policy bypasses in enterprise environments represent sophisticated attack vectors that can compromise strict security implementations.</p>
+                        <div class="story-stats">
+                            <span class="bounty-amount">$5k-$25k</span>
+                            <span class="researcher">Enterprise Focus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bounty-stats">
+                <div class="stat-highlight">
+                    <div class="stat-number">876+</div>
+                    <div class="stat-label">XSS Payloads</div>
+                    <div class="stat-desc">in our database</div>
+                </div>
+                <div class="stat-highlight">
+                    <div class="stat-number">$1K-$50K</div>
+                    <div class="stat-label">Typical XSS Bounties</div>
+                    <div class="stat-desc">reward ranges</div>
+                </div>
+                <div class="stat-highlight">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Attack Contexts</div>
+                    <div class="stat-desc">covered by payloads</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🥷 XSSNow</h3>
+                    <p style="color: var(--text-secondary) !important;">The most comprehensive XSS payload database for ethical security research and education.</p>
+                    <div class="github-star">
+                        <a href="https://github.com/dr34mhacks/xssnow" target="_blank" class="star-btn" style="color: var(--text-primary) !important; text-decoration: none !important;">
+                            <i class="fas fa-star"></i> Leave us a star
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="payloads.html">XSS Payloads</a></li>
+                        <li><a href="xss-payload-generator.html">Payload Generator</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="contributors.html">Contributors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Docs</h4>
+                    <ul>
+                        <li><a href="docs.html#fundamentals">XSS Fundamentals</a></li>
+                        <li><a href="docs.html#bypass-techniques">Bypass Techniques</a></li>
+                        <li><a href="docs.html#waf-bypasses">WAF Bypasses</a></li>
+                        <li><a href="docs.html#prevention">Prevention Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contribute</h4>
+                    <ul>
+                        <li><a href="https://github.com/dr34mhacks/xssnow" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/blob/main/CONTRIBUTING.md" target="_blank">Add Payloads</a></li>
+                        <li><a href="contributors.html">Join Community</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://www.linkedin.com/in/sid-j0shi/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi</a> (dr34mhacks)</p>
+                    <p class="disclaimer">⚠️ For educational and ethical security testing only. Use responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/seo-framework.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js" defer></script>
+    <script src="js/generator.js" defer></script>
+
+    <!-- Mobile Menu Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileToggle = document.querySelector('.mobile-menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            if (mobileToggle && navMenu) {
+                mobileToggle.addEventListener('click', function() {
+                    mobileToggle.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
+
+                // Close mobile menu when clicking nav links
+                navMenu.querySelectorAll('.nav-link').forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!mobileToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                        mobileToggle.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- Performance and Analytics -->
+    <script>
+        // Service Worker registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
+    <script src="js/author.js"></script>
+</body>
+</html>

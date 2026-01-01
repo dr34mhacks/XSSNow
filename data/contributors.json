@@ -1,0 +1,261 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "last_updated": "2024-12-30",
+    "total_contributors": 15,
+    "total_points": 2456,
+    "contribution_guidelines": "https://github.com/xssninja/xssninja/blob/main/CONTRIBUTING.md"
+  },
+  "point_system": {
+    "basic_payload": 5,
+    "advanced_payload": 15,
+    "expert_payload": 25,
+    "polyglot_payload": 50,
+    "csp_bypass": 30,
+    "waf_bypass": 25,
+    "mobile_payload": 10,
+    "unique_technique": 100,
+    "documentation": 5,
+    "bug_report": 3,
+    "code_improvement": 10
+  },
+  "badges": {
+    "contributor": {
+      "name": "Contributor",
+      "description": "Made your first contribution",
+      "icon": "fas fa-user-plus",
+      "requirement": 1
+    },
+    "researcher": {
+      "name": "Security Researcher",
+      "description": "Contributed 10+ payloads",
+      "icon": "fas fa-search",
+      "requirement": 10
+    },
+    "expert": {
+      "name": "XSS Expert",
+      "description": "Contributed 50+ payloads",
+      "icon": "fas fa-star",
+      "requirement": 50
+    },
+    "ninja": {
+      "name": "XSS Ninja",
+      "description": "Contributed 100+ payloads or unique techniques",
+      "icon": "fas fa-user-ninja",
+      "requirement": 100
+    },
+    "legend": {
+      "name": "XSS Legend",
+      "description": "500+ points or groundbreaking contributions",
+      "icon": "fas fa-crown",
+      "requirement": 500
+    }
+  },
+  "contributors": [
+    {
+      "id": "brutelogic",
+      "username": "BruteLogic",
+      "github_username": "brutelogic",
+      "name": "Eduardo Vela",
+      "avatar_url": "https://github.com/brutelogic.png",
+      "bio": "XSS research pioneer and security expert",
+      "location": "Brazil",
+      "website": "https://brutelogic.com.br",
+      "twitter": "@brutelogic",
+      "points": 450,
+      "payloads_contributed": 35,
+      "join_date": "2024-01-15",
+      "last_contribution": "2024-12-28",
+      "badges": ["contributor", "researcher", "expert", "ninja"],
+      "specialties": ["XSS", "WAF Bypass", "Polyglots"],
+      "top_contributions": [
+        "SVG onload techniques",
+        "Event handler research",
+        "Filter bypass methods"
+      ],
+      "rank": 1
+    },
+    {
+      "id": "portswigger",
+      "username": "PortSwigger",
+      "github_username": "portswigger",
+      "name": "PortSwigger Team",
+      "avatar_url": "https://github.com/portswigger.png",
+      "bio": "Creators of Burp Suite and web security research",
+      "location": "UK",
+      "website": "https://portswigger.net",
+      "twitter": "@portswigger",
+      "points": 380,
+      "payloads_contributed": 28,
+      "join_date": "2024-01-15",
+      "last_contribution": "2024-12-25",
+      "badges": ["contributor", "researcher", "expert"],
+      "specialties": ["JavaScript Context", "Advanced XSS", "Research"],
+      "top_contributions": [
+        "JavaScript breakout techniques",
+        "Context-aware payloads",
+        "Security research methodologies"
+      ],
+      "rank": 2
+    },
+    {
+      "id": "mathias-bynens",
+      "username": "Mathias Bynens",
+      "github_username": "mathiasbynens",
+      "name": "Mathias Bynens",
+      "avatar_url": "https://github.com/mathiasbynens.png",
+      "bio": "JavaScript engine researcher and V8 team member",
+      "location": "Belgium",
+      "website": "https://mathiasbynens.be",
+      "twitter": "@mathias",
+      "points": 650,
+      "payloads_contributed": 8,
+      "join_date": "2024-01-18",
+      "last_contribution": "2024-12-20",
+      "badges": ["contributor", "researcher", "expert", "ninja", "legend"],
+      "specialties": ["Polyglots", "JavaScript", "Unicode"],
+      "top_contributions": [
+        "Universal polyglot payload",
+        "JavaScript engine research",
+        "Unicode bypass techniques"
+      ],
+      "rank": 1
+    },
+    {
+      "id": "gareth-heyes",
+      "username": "Gareth Heyes",
+      "github_username": "garethheyes",
+      "name": "Gareth Heyes",
+      "avatar_url": "https://github.com/garethheyes.png",
+      "bio": "PortSwigger Research Director and XSS expert",
+      "location": "UK",
+      "website": "https://portswigger.net/research",
+      "twitter": "@garethheyes",
+      "points": 520,
+      "payloads_contributed": 22,
+      "join_date": "2024-01-16",
+      "last_contribution": "2024-12-22",
+      "badges": ["contributor", "researcher", "expert", "ninja", "legend"],
+      "specialties": ["AngularJS", "Template Injection", "CSP Bypass"],
+      "top_contributions": [
+        "AngularJS constructor bypass",
+        "Template injection research",
+        "CSP bypass techniques"
+      ],
+      "rank": 3
+    },
+    {
+      "id": "mario-heiderich",
+      "username": "Mario Heiderich",
+      "github_username": "cure53",
+      "name": "Mario Heiderich",
+      "avatar_url": "https://github.com/cure53.png",
+      "bio": "Cure53 founder and web security expert",
+      "location": "Germany",
+      "website": "https://cure53.de",
+      "twitter": "@cure53berlin",
+      "points": 420,
+      "payloads_contributed": 18,
+      "join_date": "2024-01-17",
+      "last_contribution": "2024-12-18",
+      "badges": ["contributor", "researcher", "expert", "ninja"],
+      "specialties": ["AngularJS", "Prototype Pollution", "DOM XSS"],
+      "top_contributions": [
+        "AngularJS prototype pollution",
+        "DOM-based XSS research",
+        "Client-side security"
+      ],
+      "rank": 4
+    },
+    {
+      "id": "jan-horn",
+      "username": "Jan Horn",
+      "github_username": "thejh",
+      "name": "Jan Horn",
+      "avatar_url": "https://github.com/thejh.png",
+      "bio": "Google Project Zero security researcher",
+      "location": "Germany",
+      "website": "https://googleprojectzero.blogspot.com",
+      "twitter": "@tehjh",
+      "points": 380,
+      "payloads_contributed": 12,
+      "join_date": "2024-01-19",
+      "last_contribution": "2024-12-15",
+      "badges": ["contributor", "researcher", "expert"],
+      "specialties": ["Sandbox Bypass", "Browser Security", "AngularJS"],
+      "top_contributions": [
+        "AngularJS 1.6+ sandbox bypass",
+        "Browser security research",
+        "Vulnerability discovery"
+      ],
+      "rank": 5
+    },
+    {
+      "id": "xssninja-team",
+      "username": "XSSNinja Team",
+      "github_username": "xssninja",
+      "name": "XSSNinja Core Team",
+      "avatar_url": "https://github.com/xssninja.png",
+      "bio": "Core development team for XSSNinja platform",
+      "location": "Global",
+      "website": "https://xssninja.com",
+      "twitter": "@xssninja",
+      "points": 200,
+      "payloads_contributed": 45,
+      "join_date": "2024-01-15",
+      "last_contribution": "2024-12-30",
+      "badges": ["contributor", "researcher"],
+      "specialties": ["Platform Development", "Curation", "Research"],
+      "top_contributions": [
+        "Initial payload database",
+        "Platform architecture",
+        "Community management"
+      ],
+      "rank": 6
+    },
+    {
+      "id": "community-contributor-001",
+      "username": "SecurityResearcher42",
+      "github_username": "secresearcher42",
+      "name": "Anonymous Researcher",
+      "avatar_url": "https://github.com/secresearcher42.png",
+      "bio": "Bug bounty hunter and security researcher",
+      "location": "Unknown",
+      "website": null,
+      "twitter": null,
+      "points": 156,
+      "payloads_contributed": 8,
+      "join_date": "2024-02-01",
+      "last_contribution": "2024-12-10",
+      "badges": ["contributor", "researcher"],
+      "specialties": ["Bug Bounty", "WAF Bypass"],
+      "top_contributions": [
+        "Cloudflare bypass techniques",
+        "Mobile XSS payloads"
+      ],
+      "rank": 7
+    },
+    {
+      "id": "community-contributor-002",
+      "username": "XSSHunter",
+      "github_username": "xsshunter",
+      "name": "Sarah Chen",
+      "avatar_url": "https://github.com/xsshunter.png",
+      "bio": "Penetration tester and security consultant",
+      "location": "Singapore",
+      "website": "https://sarahchen.security",
+      "twitter": "@xsshunter",
+      "points": 134,
+      "payloads_contributed": 12,
+      "join_date": "2024-02-15",
+      "last_contribution": "2024-12-08",
+      "badges": ["contributor", "researcher"],
+      "specialties": ["Event Handlers", "Mobile XSS"],
+      "top_contributions": [
+        "Touch event payloads",
+        "Mobile-specific techniques"
+      ],
+      "rank": 8
+    }
+  ]
+}

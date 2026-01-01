@@ -1,0 +1,345 @@
+/**
+ * XSSNow SEO Components CSS
+ * Optimized styling for SEO-related components with performance focus
+ */
+
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+  background: rgba(17, 17, 17, 0.95);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0.75rem 0;
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+  font-size: 0.9rem;
+}
+
+.breadcrumb {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.breadcrumb-item:not(:last-child)::after {
+  content: '→';
+  margin-left: 0.5rem;
+  color: var(--neon-cyan);
+  font-weight: 500;
+}
+
+.breadcrumb-item a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.breadcrumb-item a:hover {
+  color: var(--neon-green);
+  background: rgba(0, 255, 65, 0.1);
+}
+
+.breadcrumb-item.active {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* Related Content Section */
+.related-content-section {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.02), rgba(0, 255, 255, 0.02));
+  border-top: 1px solid var(--border-color);
+  padding: 4rem 0;
+  margin-top: 4rem;
+}
+
+.related-content-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.related-content-section h2 {
+  color: var(--text-primary);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.related-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.related-content-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  display: block;
+}
+
+.related-content-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.related-content-item:hover::before {
+  transform: scaleX(1);
+}
+
+.related-content-item:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.08), rgba(0, 255, 255, 0.02));
+  border-color: var(--neon-cyan);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 255, 255, 0.15);
+}
+
+.related-content-item h3 {
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.related-content-item:hover h3 {
+  color: var(--neon-cyan);
+}
+
+.related-content-item p {
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.related-arrow {
+  color: var(--neon-green);
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.related-content-item:hover .related-arrow {
+  transform: translateX(4px);
+}
+
+/* Auto-generated Internal Links */
+.auto-link {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--neon-cyan);
+  transition: all 0.3s ease;
+  padding: 0 2px;
+}
+
+.auto-link:hover {
+  color: var(--neon-green);
+  border-bottom-color: var(--neon-green);
+  background: rgba(0, 255, 65, 0.1);
+  border-radius: 3px;
+}
+
+
+/* Lazy Loading Placeholders */
+.lazy-placeholder {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.lazy {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy.loaded {
+  opacity: 1;
+}
+
+
+
+
+/* Print Styles for SEO */
+@media print {
+  .breadcrumb-nav,
+  .related-content-section,
+  nav,
+  footer {
+    display: none;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  .auto-link {
+    color: #0066cc;
+    border-bottom: 1px solid #0066cc;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: black;
+    page-break-after: avoid;
+  }
+
+  pre, blockquote {
+    border: 1px solid #ccc;
+    page-break-inside: avoid;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .breadcrumb-nav {
+    background: black;
+    border-bottom: 2px solid white;
+  }
+
+  .breadcrumb-item a {
+    color: #00ffff;
+    border: 1px solid transparent;
+  }
+
+  .breadcrumb-item a:hover {
+    border-color: #00ffff;
+    background: black;
+  }
+
+  .related-content-item {
+    border: 2px solid white;
+    background: black;
+  }
+
+  .auto-link {
+    border-bottom: 2px solid #00ffff;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .related-content-item,
+  .auto-link,
+  .breadcrumb-item a,
+  .lazy {
+    transition: none;
+  }
+
+  .lazy-placeholder {
+    animation: none;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .related-content-item:hover {
+    transform: none;
+  }
+
+  .related-content-item:hover .related-arrow {
+    transform: none;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .breadcrumb-nav {
+    padding: 0.5rem 0;
+    top: 70px;
+  }
+
+  .breadcrumb {
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb-item {
+    font-size: 0.75rem;
+  }
+
+  .related-content-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .related-content-item {
+    padding: 1.5rem;
+  }
+
+  .related-content-section {
+    padding: 2rem 0;
+  }
+
+  .related-content-section .container {
+    padding: 0 1rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .breadcrumb {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .breadcrumb-item:not(:last-child)::after {
+    content: '↓';
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
+
+  .related-content-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .related-content-item h3 {
+    font-size: 1.1rem;
+  }
+}

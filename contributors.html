@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+    <meta name="language" content="English">
+    <title>🥷 XSSNow - Community Contributors & Security Researchers</title>
+    <meta name="description" content="Meet the elite security researchers, ethical hackers, and contributors who make XSSNow the ultimate community-driven XSS payload database.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="XSSNow - Security Researchers Community">
+    <meta property="og:description" content="Meet the elite security researchers and ethical hackers contributing to the ultimate XSS payload database.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://xssnow.in/contributors.html">
+    <meta property="og:image" content="https://xssnow.in/assets/xss_now_logo.png">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="XSSNow - Security Researchers Community">
+    <meta name="twitter:description" content="Meet the security researchers contributing to XSSNow's XSS payload database.">
+
+    <!-- Additional SEO -->
+    <meta name="keywords" content="Security Researchers, Contributors, XSS Experts, Ethical Hackers, Bug Bounty Hunters, Cybersecurity Community">
+    <link rel="canonical" href="https://xssnow.in/contributors.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/ninja.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/contributors-page.css">
+</head>
+<body>
+    <!-- Matrix Background Animation -->
+    <div id="matrix-bg"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--neon-green);">
+                    <i class="fas fa-user-ninja" style="color: var(--neon-green);"></i>
+                    <span class="brand-text" style="color: var(--neon-green);">XSSNow</span>
+                    <span class="version">v1.0</span>
+                </a>
+            </div>
+
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="payloads.html" class="nav-link">Payloads</a>
+                <a href="xss-payload-generator.html" class="nav-link">Generator</a>
+                <a href="contributors.html" class="nav-link active">Contributors</a>
+                <a href="docs.html" class="nav-link">Docs</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="https://github.com/dr34mhacks/xssnow" class="github-btn" target="_blank">
+                    <i class="fab fa-github"></i>
+                    <span>Fork & Contribute</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-contributors">
+        <div class="hero-background">
+            <div class="cyber-grid"></div>
+            <div class="floating-elements">
+                <div class="float-element">🔍</div>
+                <div class="float-element">💻</div>
+                <div class="float-element">⚡</div>
+                <div class="float-element">🔐</div>
+                <div class="float-element">🛡️</div>
+            </div>
+        </div>
+
+        <div class="hero-container">
+            <div class="hero-content-new">
+                <div class="hero-badge-new">
+                    <span class="pulse-dot"></span>
+                    <span>Live Community</span>
+                </div>
+
+                <h1 class="hero-title-new">
+                    Security Researchers
+                    <span class="gradient-text-new">Hall of Fame</span>
+                </h1>
+
+                <p class="hero-description-new">
+                    Meet the elite security researchers, ethical hackers, and XSS masters who contribute to the world's most comprehensive payload database.
+                </p>
+
+                <div class="hero-stats-new">
+                    <div class="stat-card-new">
+                        <div class="stat-icon-new">👥</div>
+                        <div class="stat-info-new">
+                            <div class="stat-number-new" id="heroContributors">15</div>
+                            <div class="stat-label-new">Elite Contributors</div>
+                        </div>
+                    </div>
+                    <div class="stat-card-new">
+                        <div class="stat-icon-new">💾</div>
+                        <div class="stat-info-new">
+                            <div class="stat-number-new" id="heroPayloads">97</div>
+                            <div class="stat-label-new">XSS Payloads</div>
+                        </div>
+                    </div>
+                    <div class="stat-card-new">
+                        <div class="stat-icon-new">🌍</div>
+                        <div class="stat-info-new">
+                            <div class="stat-number-new">25+</div>
+                            <div class="stat-label-new">Countries</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta-new">
+                    <button class="cta-primary" onclick="window.location.href='#leaderboard'">
+                        <span>View Hall of Fame</span>
+                        <i class="fas fa-crown"></i>
+                    </button>
+                    <button class="cta-secondary" onclick="window.location.href='#contribute'">
+                        <span>Join the Elite</span>
+                        <i class="fas fa-rocket"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hero-visual-new">
+                <div class="achievement-showcase">
+                    <div class="achievement-card active">
+                        <div class="achievement-icon">🏆</div>
+                        <h3>Top Researcher</h3>
+                        <p>Mathias Bynens</p>
+                        <div class="achievement-score">8 Payloads</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🥇</div>
+                        <h3>Most Active</h3>
+                        <p>BruteLogic</p>
+                        <div class="achievement-score">35 Payloads</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">⚡</div>
+                        <h3>Rising Star</h3>
+                        <p>New Contributors</p>
+                        <div class="achievement-score">+5 This Month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hall of Fame -->
+    <section id="leaderboard" class="hall-of-fame">
+        <div class="fame-background">
+            <div class="constellation-bg"></div>
+        </div>
+
+        <div class="fame-container">
+            <div class="fame-header">
+                <div class="fame-title-section">
+                    <h2 class="fame-title">Hall of Fame</h2>
+                    <p class="fame-subtitle">Honoring the security researchers who shape the future of XSS testing</p>
+                </div>
+                <div class="fame-filters">
+                    <button class="filter-btn-new active" data-period="all-time">All Time</button>
+                    <button class="filter-btn-new" data-period="this-month">This Month</button>
+                </div>
+            </div>
+
+            <!-- Elite Tier (Top 3) -->
+            <div class="elite-tier">
+                <div class="tier-header">
+                    <h3 class="tier-title">🌟 Elite Contributors</h3>
+                </div>
+                <div class="elite-grid" id="eliteGrid">
+                    <!-- Top 3 contributors loaded here -->
+                </div>
+            </div>
+
+            <!-- Rising Stars -->
+            <div class="rising-stars">
+                <div class="tier-header">
+                    <h3 class="tier-title">⚡ Rising Stars</h3>
+                </div>
+                <div class="stars-grid" id="starsGrid">
+                    <!-- 4th-10th contributors loaded here -->
+                </div>
+            </div>
+
+            <!-- Community Impact -->
+            <div class="community-impact">
+                <div class="impact-stats">
+                    <div class="impact-card">
+                        <div class="impact-number">🔥 97+</div>
+                        <div class="impact-label">Payloads Contributed</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-number">🌐 15</div>
+                        <div class="impact-label">Active Contributors</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-number">🚀 25+</div>
+                        <div class="impact-label">Countries Represented</div>
+                    </div>
+                    <div class="impact-card">
+                        <div class="impact-number">⭐ 100K+</div>
+                        <div class="impact-label">Tests Performed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- How to Contribute -->
+    <section id="contribute" class="how-to-contribute">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-code-branch"></i>
+                    How to Contribute
+                </h2>
+                <p class="section-subtitle">Join the community and help build the ultimate XSS payload database!</p>
+            </div>
+
+            <div class="contribution-steps">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Fork the Repository</h3>
+                        <p>Fork the XSSNow repository on GitHub to your account</p>
+                        <a href="https://github.com/dr34mhacks/XSSNow/fork" class="step-link" target="_blank">
+                            <i class="fab fa-github"></i> Fork Repository
+                        </a>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Add Your Payload</h3>
+                        <p>Edit <code>data/payloads.yaml</code> and add your XSS payload using YAML format (no escaping needed!):</p>
+                        <div class="code-example">
+                            <pre><code>- code: |
+    &lt;script&gt;alert("Hello World")&lt;/script&gt;
+  description: "Description of what your payload does"
+  category: "advanced"
+  contributor: "Your Full Name"
+  github_username: "your-github-username"
+  country: "Your Country"
+  tags: ["bypass", "script", "alert"]
+  browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+  date_added: "31-12-2025"</code></pre>
+                        </div>
+                        <div class="format-note">
+                            <h4>📝 Current Format Notes:</h4>
+                            <ul>
+                                <li><strong>Date Format:</strong> Use DD-MM-YYYY format (e.g., "31-12-2025")</li>
+                                <li><strong>Contributor:</strong> Use your full name</li>
+                                <li><strong>GitHub Username:</strong> Your GitHub username for profile linking</li>
+                                <li><strong>Tags & Browsers:</strong> Use inline array format ["item1", "item2"]</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Test Your Payload</h3>
+                        <p>Before submitting, ensure your payload:</p>
+                        <ul>
+                            <li>✅ Works in specified browsers</li>
+                            <li>✅ Is properly categorized</li>
+                            <li>✅ Has clear description and context</li>
+                            <li>✅ Follows ethical usage guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Submit Pull Request</h3>
+                        <p>Create a pull request with your contribution. Include:</p>
+                        <div class="pr-checklist">
+                            <span class="checklist-item"><i class="fas fa-check"></i> Clear PR title</span>
+                            <span class="checklist-item"><i class="fas fa-check"></i> Payload testing results</span>
+                            <span class="checklist-item"><i class="fas fa-check"></i> Browser compatibility notes</span>
+                            <span class="checklist-item"><i class="fas fa-check"></i> Proper contributor attribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Get Featured!</h3>
+                        <p>Once merged, you'll be featured on our contributors leaderboard and your payloads will help the security community!</p>
+                        <div class="contribution-benefits">
+                            <span class="benefit"><i class="fas fa-trophy"></i> Leaderboard recognition</span>
+                            <span class="benefit"><i class="fas fa-users"></i> Community impact</span>
+                            <span class="benefit"><i class="fas fa-star"></i> Security researcher credit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🥷 XSSNow</h3>
+                    <p>The most comprehensive XSS payload database for ethical security research and education.</p>
+                    <div class="github-star">
+                        <a href="https://github.com/dr34mhacks/xssnow" target="_blank" class="star-btn">
+                            <i class="fas fa-star"></i> Leave us a star
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="payloads.html">XSS Payloads</a></li>
+                        <li><a href="xss-payload-generator.html">Payload Generator</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="contributors.html">Contributors</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Docs</h4>
+                    <ul>
+                        <li><a href="docs.html#fundamentals">XSS Fundamentals</a></li>
+                        <li><a href="docs.html#bypass-techniques">Bypass Techniques</a></li>
+                        <li><a href="docs.html#waf-bypasses">WAF Bypasses</a></li>
+                        <li><a href="docs.html#prevention">Prevention Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contribute</h4>
+                    <ul>
+                        <li><a href="https://github.com/dr34mhacks/xssnow" target="_blank">GitHub Repository</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/issues" target="_blank">Report Issues</a></li>
+                        <li><a href="https://github.com/dr34mhacks/xssnow/blob/main/CONTRIBUTING.md" target="_blank">Add Payloads</a></li>
+                        <li><a href="contributors.html">Join Community</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-text">
+                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://www.linkedin.com/in/sid-j0shi/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi</a> (dr34mhacks)</p>
+                    <p class="disclaimer">⚠️ For educational and ethical security testing only. Use responsibly.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+    <script src="js/contributors.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/author.js"></script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | XSSNow</title>
+    <meta name="description" content="Page not found on XSSNow. Return to the ultimate XSS payload arsenal and security research platform.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/ninja.svg">
+
+    <!-- Animated 404 page CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Matrix rain background */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .error-container {
+            max-width: 700px;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Glitchy 404 animation */
+        .error-code {
+            font-size: 10rem;
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+            color: #00ff41;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+            position: relative;
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-2px) skewX(-5deg); }
+            20% { transform: translateX(2px) skewX(5deg); }
+            30% { transform: translateX(-1px) skewX(-2deg); }
+            40% { transform: translateX(1px) skewX(2deg); }
+            50% { transform: translateX(-1px) skewX(-1deg); }
+            60% { transform: translateX(1px) skewX(1deg); }
+        }
+
+        .error-code::before,
+        .error-code::after {
+            content: '404';
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 10rem;
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .error-code::before {
+            color: #ff0040;
+            z-index: -1;
+            animation: glitch-1 0.5s infinite;
+        }
+
+        .error-code::after {
+            color: #00ffff;
+            z-index: -2;
+            animation: glitch-2 0.7s infinite;
+        }
+
+        @keyframes glitch-1 {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-2px); }
+        }
+
+        @keyframes glitch-2 {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(2px); }
+        }
+
+        /* Bouncing ninja emoji */
+        .ninja {
+            font-size: 4rem;
+            animation: bounce 1.5s ease-in-out infinite;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.3));
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            60% {
+                transform: translateY(-10px) rotate(-5deg);
+            }
+        }
+
+        /* Typing animation for title */
+        .error-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            border-right: 2px solid #00ff41;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff41; }
+        }
+
+        .error-description {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Pulsing buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #00ff41, #00cc33);
+            color: #000;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 0 10px 10px 10px;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(0, 255, 65, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            animation: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(0, 255, 65, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { border-color: rgba(0, 255, 65, 0.3); }
+            to { border-color: rgba(0, 255, 65, 0.8); }
+        }
+
+        /* Floating suggestions */
+        .suggestions {
+            margin-top: 3rem;
+            text-align: left;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .suggestions h3 {
+            color: #00ff41;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            position: relative;
+        }
+
+        .suggestions h3::before {
+            content: '>';
+            position: absolute;
+            left: -20px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .suggestions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .suggestions li {
+            margin-bottom: 0.8rem;
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .suggestions li:nth-child(1) { animation-delay: 1.2s; }
+        .suggestions li:nth-child(2) { animation-delay: 1.4s; }
+        .suggestions li:nth-child(3) { animation-delay: 1.6s; }
+        .suggestions li:nth-child(4) { animation-delay: 1.8s; }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .suggestions a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .suggestions a:hover {
+            color: #00ff41;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+            transform: translateX(5px);
+        }
+
+        /* Easter egg messages */
+        .easter-eggs {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            color: #666;
+            font-family: 'JetBrains Mono', monospace;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3s both;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 6rem;
+            }
+            .error-code::before,
+            .error-code::after {
+                font-size: 6rem;
+            }
+            .ninja {
+                font-size: 3rem;
+            }
+            .error-title {
+                font-size: 1.8rem;
+            }
+            .btn {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg" id="matrixBg"></div>
+
+    <div class="error-container">
+        <div class="ninja">🥷</div>
+        <div class="error-code">404</div>
+        <h1 class="error-title">Payload Not Found</h1>
+        <p class="error-description">
+            <strong>XSS Alert!</strong> The payload you're hunting has executed a perfect escape() function.
+            It seems this page has been sanitized from existence. Even our elite ninja couldn't find it! 🕵️‍♂️
+        </p>
+
+        <div>
+            <a href="/" class="btn">🏠 Return to Base</a>
+            <a href="/payloads.html" class="btn btn-secondary">🎯 Hunt Payloads</a>
+        </div>
+
+        <div class="suggestions">
+            <h3>Quick Exploit Menu</h3>
+            <ul>
+                <li>💣 <a href="/payloads.html">Payload Arsenal Database</a></li>
+                <li>⚡ <a href="/xss-payload-generator.html">Weapon Generator</a></li>
+                <li>👥 <a href="/contributors.html">Elite Hackers Hall</a></li>
+                <li>📚 <a href="/docs.html">Security Intel Docs</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="easter-eggs">
+        console.log("Did you try alert(1)? 😉")
+    </div>
+
+    <script>
+        // Matrix rain effect
+        function createMatrixRain() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            document.getElementById('matrixBg').appendChild(canvas);
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+            const drops = [];
+
+            for (let i = 0; i < canvas.width / 20; i++) {
+                drops[i] = 1;
+            }
+
+            function draw() {
+                ctx.fillStyle = 'rgba(10, 10, 10, 0.04)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#00ff41';
+                ctx.font = '15px JetBrains Mono';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = characters[Math.floor(Math.random() * characters.length)];
+                    ctx.fillText(text, i * 20, drops[i] * 20);
+
+                    if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+
+            setInterval(draw, 50);
+        }
+
+        // Humorous console messages
+        const jokes = [
+            '🥷 XSSNow Ninja says: Even I couldn\'t find that page!',
+            '💻 Error 404: Payload escaped through document.location',
+            '🔍 this.page === undefined // Maybe try another route?',
+            '⚠️ Uncaught ReferenceError: page is not defined',
+            '🎯 Target not found. Try aiming at the navigation menu!',
+            '🔓 Access Denied: This page has better security than expected',
+            '🚨 XSS Blocked: Page not found, but your humor level is high!'
+        ];
+
+        console.log('%c🥷 XSSNow - 404 Error Intercepted!', 'color: #00ff41; font-size: 20px; font-weight: bold; text-shadow: 0 0 10px rgba(0,255,65,0.5);');
+        console.log(`%c${jokes[Math.floor(Math.random() * jokes.length)]}`, 'color: #ccc; font-size: 14px; background: rgba(0,255,65,0.1); padding: 5px 10px; border-radius: 4px;');
+        console.log('%cPro tip: Try using the navigation menu above! 🧭', 'color: #ffa500; font-size: 12px;');
+
+        // Easter egg: Konami code
+        let konamiCode = [];
+        const correctCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.code);
+            if (konamiCode.length > 10) konamiCode.shift();
+
+            if (JSON.stringify(konamiCode) === JSON.stringify(correctCode)) {
+                document.body.style.filter = 'invert(1) hue-rotate(180deg)';
+                setTimeout(() => {
+                    alert('🎉 Konami Code Executed! You found the secret ninja mode!');
+                    document.body.style.filter = 'none';
+                }, 1000);
+            }
+        });
+
+        // Initialize matrix effect
+        createMatrixRain();
+
+        // Random funny page title changes
+        const titles = [
+            '404 - Payload Escaped!',
+            '404 - Page.exe has stopped working',
+            '404 - This is not the page you\'re looking for',
+            '404 - Page went on vacation',
+            '404 - Our ninja is in another castle'
+        ];
+
+        setInterval(() => {
+            document.title = titles[Math.floor(Math.random() * titles.length)] + ' | XSSNow';
+        }, 3000);
+    </script>
+    <script src="js/author.js"></script>
+</body>
+</html>
