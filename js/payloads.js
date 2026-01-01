@@ -28,7 +28,9 @@ class PayloadsManager {
       const yamlText = await response.text();
       const yamlData = jsyaml.load(yamlText) || {};
       this.payloads = yamlData.payloads || [];
+
       this.filteredPayloads = [...this.payloads];
+
     } catch (error) {
       console.error('Failed to load payloads:', error);
       this.payloads = this.getFallbackPayloads();
@@ -66,6 +68,24 @@ class PayloadsManager {
     categoryInputs.forEach(input => {
       input.addEventListener('change', () => {
         this.filters.category = input.value;
+
+        // Clear other filters when switching to curated to avoid conflicts
+        if (input.value === 'curated') {
+          this.filters.context = [];
+          this.filters.features = [];
+          this.filters.search = '';
+
+          // Clear search input
+          const searchInput = document.getElementById('payloadSearch');
+          if (searchInput) searchInput.value = '';
+
+          // Clear context checkboxes
+          document.querySelectorAll('input[name="context"]:checked').forEach(cb => cb.checked = false);
+
+          // Clear feature checkboxes
+          document.querySelectorAll('input[name="features"]:checked').forEach(cb => cb.checked = false);
+        }
+
         this.applyFilters();
       });
     });
@@ -161,7 +181,7 @@ class PayloadsManager {
       // Category filter
       if (this.filters.category !== 'all') {
         const category = (payload.category || 'basic').toLowerCase();
-        if (!category.includes(this.filters.category)) {
+        if (category !== this.filters.category) {
           return false;
         }
       }
@@ -235,30 +255,70 @@ class PayloadsManager {
   }
 
   renderCardsView(container) {
-    const cardsHTML = this.filteredPayloads.map((payload, index) => `
-      <div class="payload-card">
-        <div class="payload-header">
-          <span class="payload-category">${this.escapeHtml(payload.category || 'XSS')}</span>
-          <div class="payload-actions">
-            <button data-action="copy" data-index="${index}" title="Copy">
-              <i class="fas fa-copy"></i>
-            </button>
-            <button data-action="bookmark" data-index="${index}" title="Bookmark">
-              <i class="fas fa-bookmark"></i>
-            </button>
+    const cardsHTML = this.filteredPayloads.map((payload, index) => {
+      const isCurated = payload.category === 'curated';
+      const authorInfo = isCurated ? this.renderAuthorInfo(payload) : '';
+
+      return `
+        <div class="payload-card ${isCurated ? 'curated-payload' : ''}">
+          <div class="payload-header">
+            <span class="payload-category">${this.escapeHtml(payload.category || 'XSS')}</span>
+            <div class="payload-actions">
+              <button data-action="copy" data-index="${index}" title="Copy">
+                <i class="fas fa-copy"></i>
+              </button>
+              <button data-action="bookmark" data-index="${index}" title="Bookmark">
+                <i class="fas fa-bookmark"></i>
+              </button>
+            </div>
+          </div>
+          ${authorInfo}
+          <div class="payload-code">
+            <code>${this.escapeHtml(payload.code)}</code>
+          </div>
+          <div class="payload-description">
+            <p>${this.escapeHtml(payload.description || '')}</p>
+          </div>
+          <div class="payload-meta">
+            <span class="payload-context">${this.getContextFromTags(payload.tags)}</span>
+            <span class="payload-length">${payload.code.length} chars</span>
           </div>
         </div>
-        <div class="payload-code">
-          <code>${this.escapeHtml(payload.code)}</code>
-        </div>
-        <div class="payload-meta">
-          <span class="payload-context">${this.getContextFromTags(payload.tags)}</span>
-          <span class="payload-length">${payload.code.length} chars</span>
-        </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
 
     container.innerHTML = `<div class="payloads-grid">${cardsHTML}</div>`;
+  }
+
+  renderAuthorInfo(payload) {
+    const authorName = this.escapeHtml(payload.contributor || 'Anonymous');
+    const githubUsername = payload.github_username || '';
+    const country = payload.country || 'Unknown';
+    const avatarUrl = githubUsername ? `https://github.com/${githubUsername}.png?size=40` : '';
+
+    return `
+      <div class="payload-author">
+        <div class="author-avatar">
+          ${avatarUrl ?
+            `<img src="${avatarUrl}" alt="${authorName}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+             <div class="avatar-fallback" style="display:none">${authorName.charAt(0).toUpperCase()}</div>` :
+            `<div class="avatar-fallback">${authorName.charAt(0).toUpperCase()}</div>`
+          }
+        </div>
+        <div class="author-info">
+          <div class="author-name">
+            ${githubUsername ?
+              `<a href="https://github.com/${githubUsername}" target="_blank" rel="noopener">${authorName}</a>` :
+              authorName
+            }
+            <span class="curated-badge">⭐</span>
+          </div>
+          <div class="author-meta">
+            ${githubUsername ? `@${githubUsername}` : ''} ${country !== 'Unknown' ? `• ${country}` : ''}
+          </div>
+        </div>
+      </div>
+    `;
   }
 
   renderListView(container) {

@@ -1,0 +1,264 @@
+/**
+ * Enhanced Curated Payloads Styling
+ * Special styling for community-contributed payloads with author attribution
+ */
+
+/* Enhanced Curated Payload Cards */
+.curated-payload {
+    background: linear-gradient(145deg, rgba(0, 255, 65, 0.08), rgba(0, 245, 255, 0.05));
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    box-shadow:
+        0 8px 32px rgba(0, 255, 65, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.curated-payload::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--neon-green), var(--neon-cyan));
+    z-index: 1;
+}
+
+.curated-payload:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 16px 48px rgba(0, 255, 65, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(0, 255, 65, 0.5);
+}
+
+/* Author Information Section */
+.payload-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: rgba(0, 255, 65, 0.05);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+    margin: 0 -1rem;
+    margin-bottom: 1rem;
+}
+
+.author-avatar {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.author-avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 255, 65, 0.3);
+    transition: all var(--transition-fast);
+}
+
+.author-avatar img:hover {
+    border-color: var(--neon-green);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+}
+
+.avatar-fallback {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+    color: var(--text-inverse);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 2px solid rgba(0, 255, 65, 0.3);
+}
+
+.author-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.author-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+}
+
+.author-name a {
+    color: var(--neon-green);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.author-name a:hover {
+    color: var(--neon-cyan);
+    text-decoration: underline;
+}
+
+.curated-badge {
+    color: var(--neon-green);
+    font-size: 1rem;
+    margin-left: 0.3rem;
+}
+
+.author-meta {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Enhanced Payload Description */
+.curated-payload .payload-description {
+    margin: 1rem 0;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-left: 3px solid var(--neon-green);
+    border-radius: 0 4px 4px 0;
+}
+
+.curated-payload .payload-description p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Enhanced Category Badge for Curated */
+.curated-payload .payload-category {
+    background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+    color: var(--text-inverse);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Enhanced Meta Information */
+.curated-payload .payload-meta {
+    border-top: 1px solid rgba(0, 255, 65, 0.1);
+    background: rgba(0, 255, 65, 0.03);
+    padding: 0.75rem;
+    margin: 1rem -1rem -1rem -1rem;
+}
+
+.payload-date {
+    background: rgba(0, 255, 65, 0.1);
+    color: var(--neon-green);
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+/* Enhanced Code Block for Curated */
+.curated-payload .payload-code {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    position: relative;
+}
+
+/* Mobile Adjustments for Curated Payloads */
+@media (max-width: 768px) {
+    .payload-author {
+        padding: 0.75rem;
+        gap: 0.5rem;
+    }
+
+    .author-avatar,
+    .author-avatar img,
+    .avatar-fallback {
+        width: 32px;
+        height: 32px;
+    }
+
+    .avatar-fallback {
+        font-size: 0.9rem;
+    }
+
+    .author-name {
+        font-size: 0.85rem;
+    }
+
+    .author-meta {
+        font-size: 0.75rem;
+    }
+
+    .curated-badge {
+        padding: 0.15rem 0.3rem;
+        font-size: 0.6rem;
+    }
+
+    .curated-payload .payload-description {
+        margin: 0.75rem 0;
+        padding: 0.5rem;
+    }
+
+    .curated-payload .payload-description p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Animation for Loading Curated Payloads */
+.curated-payload {
+    animation: curatedFadeIn 0.6s ease-out;
+}
+
+@keyframes curatedFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Special Glow Effect */
+.curated-payload::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+    z-index: -1;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+}
+
+.curated-payload:hover::after {
+    opacity: 1;
+}
+
+/* Curated Filter Badge */
+.filter-option input[value="curated"] + span {
+    position: relative;
+}
+
+.filter-option input[value="curated"] + span::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: #ffd700;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+}
