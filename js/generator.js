@@ -431,7 +431,7 @@ class XSSPayloadGenerator {
         const index = parseInt(e.currentTarget.dataset.payloadIndex);
 
         if (action === 'copy' && this.currentPayloads && this.currentPayloads[index]) {
-          this.copyPayloadItem(this.currentPayloads[index].code);
+          this.copyPayloadItem(this.currentPayloads[index].code, e.currentTarget);
         } else if (action === 'save' && this.currentPayloads && this.currentPayloads[index]) {
           this.savePayloadItem(index);
         }
@@ -449,11 +449,69 @@ class XSSPayloadGenerator {
     }
   }
 
-  copyPayloadItem(payload) {
-    navigator.clipboard.writeText(payload).then(() => {
-    }).catch(err => {
-      console.error('Failed to copy payload:', err);
-    });
+  copyPayloadItem(payload, button) {
+    // Try modern Clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(payload).then(() => {
+        this.showCopySuccess(button);
+      }).catch(err => {
+        console.error('Clipboard API failed:', err);
+        this.fallbackCopy(payload, button);
+      });
+    } else {
+      // Use fallback method
+      this.fallbackCopy(payload, button);
+    }
+  }
+
+  fallbackCopy(text, button) {
+    // Create temporary textarea
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        this.showCopySuccess(button);
+      } else {
+        this.showCopyError(button);
+      }
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+      this.showCopyError(button);
+    }
+
+    document.body.removeChild(textarea);
+  }
+
+  showCopySuccess(button) {
+    if (!button) return;
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i>';
+    button.style.color = 'var(--neon-green)';
+
+    setTimeout(() => {
+      button.innerHTML = originalIcon;
+      button.style.color = '';
+    }, 1500);
+  }
+
+  showCopyError(button) {
+    if (!button) return;
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-times"></i>';
+    button.style.color = '#ff4444';
+
+    setTimeout(() => {
+      button.innerHTML = originalIcon;
+      button.style.color = '';
+    }, 1500);
+
+    alert('Failed to copy to clipboard. Please copy manually.');
   }
 
   savePayloadItem(index) {
@@ -567,16 +625,25 @@ class XSSPayloadGenerator {
       button.addEventListener('click', (e) => {
         const index = parseInt(e.currentTarget.dataset.historyIndex);
         if (this.history && this.history[index]) {
-          this.copyHistoryItem(this.history[index].code);
+          this.copyHistoryItem(this.history[index].code, e.currentTarget);
         }
       });
     });
   }
 
-  copyHistoryItem(payload) {
-    navigator.clipboard.writeText(payload).then(() => {
-      console.log('Payload copied from history');
-    });
+  copyHistoryItem(payload, button) {
+    // Try modern Clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(payload).then(() => {
+        this.showCopySuccess(button);
+      }).catch(err => {
+        console.error('Clipboard API failed:', err);
+        this.fallbackCopy(payload, button);
+      });
+    } else {
+      // Use fallback method
+      this.fallbackCopy(payload, button);
+    }
   }
 
   escapeHtml(text) {

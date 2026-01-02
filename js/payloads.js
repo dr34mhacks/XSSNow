@@ -362,18 +362,66 @@ class PayloadsManager {
   }
 
   copyPayload(code, button) {
-    navigator.clipboard.writeText(code).then(() => {
-      const originalIcon = button.innerHTML;
-      button.innerHTML = '<i class="fas fa-check"></i>';
-      button.style.color = 'var(--neon-green)';
+    // Try modern Clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(code).then(() => {
+        this.showCopySuccess(button);
+      }).catch(err => {
+        console.error('Clipboard API failed:', err);
+        this.fallbackCopy(code, button);
+      });
+    } else {
+      // Use fallback method
+      this.fallbackCopy(code, button);
+    }
+  }
 
-      setTimeout(() => {
-        button.innerHTML = originalIcon;
-        button.style.color = '';
-      }, 1500);
-    }).catch(err => {
-      console.error('Failed to copy payload:', err);
-    });
+  fallbackCopy(code, button) {
+    // Create temporary textarea
+    const textarea = document.createElement('textarea');
+    textarea.value = code;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        this.showCopySuccess(button);
+      } else {
+        this.showCopyError(button);
+      }
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+      this.showCopyError(button);
+    }
+
+    document.body.removeChild(textarea);
+  }
+
+  showCopySuccess(button) {
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check"></i>';
+    button.style.color = 'var(--neon-green)';
+
+    setTimeout(() => {
+      button.innerHTML = originalIcon;
+      button.style.color = '';
+    }, 1500);
+  }
+
+  showCopyError(button) {
+    const originalIcon = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-times"></i>';
+    button.style.color = '#ff4444';
+
+    setTimeout(() => {
+      button.innerHTML = originalIcon;
+      button.style.color = '';
+    }, 1500);
+
+    alert('Failed to copy to clipboard. Please copy manually.');
   }
 
   bookmarkPayload(payload, button) {

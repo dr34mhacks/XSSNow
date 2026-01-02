@@ -360,18 +360,41 @@ class XSSNow {
   }
 
   copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-      this.showNotification('Payload copied to clipboard!', 'success');
-    }).catch(() => {
-      // Fallback for older browsers
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      this.showNotification('Payload copied to clipboard!', 'success');
-    });
+    // Try modern Clipboard API first
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        this.showNotification('Payload copied to clipboard!', 'success');
+      }).catch(() => {
+        // Fallback for older browsers or when API fails
+        this.fallbackCopy(text);
+      });
+    } else {
+      // Use fallback for older browsers or insecure contexts
+      this.fallbackCopy(text);
+    }
+  }
+
+  fallbackCopy(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    try {
+      const successful = document.execCommand('copy');
+      if (successful) {
+        this.showNotification('Payload copied to clipboard!', 'success');
+      } else {
+        this.showNotification('Failed to copy. Please copy manually.', 'error');
+      }
+    } catch (err) {
+      console.error('Copy failed:', err);
+      this.showNotification('Failed to copy. Please copy manually.', 'error');
+    }
+
+    document.body.removeChild(textArea);
   }
 
   showNotification(message, type = 'info') {

@@ -717,15 +717,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         copyBtn.addEventListener('click', () => {
             const code = codeBlock.textContent;
-            navigator.clipboard.writeText(code).then(() => {
-                copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-                copyBtn.style.color = '#4ade80';
-                setTimeout(() => {
-                    copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                    copyBtn.style.color = 'var(--neon-green)';
-                }, 2000);
-            });
+
+            // Try modern Clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).then(() => {
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+                    copyBtn.style.color = '#4ade80';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                        copyBtn.style.color = 'var(--neon-green)';
+                    }, 2000);
+                }).catch(() => {
+                    // Fallback if clipboard API fails
+                    fallbackCopy(code, copyBtn);
+                });
+            } else {
+                // Use fallback for older browsers or insecure contexts
+                fallbackCopy(code, copyBtn);
+            }
         });
+
+        // Fallback copy function
+        function fallbackCopy(text, button) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    button.innerHTML = '<i class="fas fa-check"></i>';
+                    button.style.color = '#4ade80';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-copy"></i>';
+                        button.style.color = 'var(--neon-green)';
+                    }, 2000);
+                } else {
+                    button.innerHTML = '<i class="fas fa-times"></i>';
+                    button.style.color = '#ff4444';
+                    setTimeout(() => {
+                        button.innerHTML = '<i class="fas fa-copy"></i>';
+                        button.style.color = 'var(--neon-green)';
+                    }, 2000);
+                }
+            } catch (err) {
+                console.error('Copy failed:', err);
+            }
+
+            document.body.removeChild(textarea);
+        }
 
         codeBlock.style.position = 'relative';
         codeBlock.appendChild(copyBtn);
