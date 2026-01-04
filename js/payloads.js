@@ -24,7 +24,12 @@ class PayloadsManager {
 
   async loadPayloads() {
     try {
-      const response = await fetch('data/payloads.yaml?v=' + Date.now());
+      const response = await fetch('data/payloads.yaml?v=' + Date.now(), {
+        cache: 'no-cache',
+        headers: {
+          'Cache-Control': 'no-cache'
+        }
+      });
       const yamlText = await response.text();
       const yamlData = jsyaml.load(yamlText) || {};
       this.payloads = yamlData.payloads || [];

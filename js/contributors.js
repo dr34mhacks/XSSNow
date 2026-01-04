@@ -22,9 +22,11 @@ class ContributorsManager {
         try {
             const response = await fetch('data/payloads.yaml?v=' + Date.now(), {
                 method: 'GET',
+                cache: 'no-cache',
                 headers: {
                     'Accept': 'text/plain',
-                    'Cache-Control': 'no-cache'
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
                 }
             });
             if (!response.ok) {

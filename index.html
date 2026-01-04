@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Language" content="en">
     <meta name="language" content="English">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>XSSNow - Ultimate XSS Payload Arsenal & Security Research Platform</title>
     <meta name="description" content="Community-driven XSS vulnerability testing platform with curated payloads, advanced generator, WAF bypass techniques, and security research tools. Perfect for penetration testing and bug bounty hunting.">
 
@@ -403,13 +406,18 @@
             });
         }
     </script>
-    <script src="js/author.js?v=1.1"></script>
+    <script src="js/author.js?v=20260104111729"></script>
 
     <!-- Dynamic payload count updater -->
     <script>
         async function updatePayloadCounts() {
             try {
-                const response = await fetch('data/payloads.yaml?v=' + Date.now());
+                const response = await fetch('data/payloads.yaml?v=' + Date.now(), {
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache'
+                    }
+                });
                 const yamlText = await response.text();
 
                 // Count payload entries
