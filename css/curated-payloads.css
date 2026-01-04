@@ -12,6 +12,7 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
+    color: var(--text-primary);
 }
 
 .curated-payload::before {
@@ -127,6 +128,14 @@
     background: rgba(0, 0, 0, 0.2);
     border-left: 3px solid var(--neon-green);
     border-radius: 0 4px 4px 0;
+    color: var(--text-secondary);
+}
+
+/* Ensure normal text color for payload content */
+.curated-payload .payload-code,
+.curated-payload .payload-title,
+.curated-payload .payload-header h3 {
+    color: var(--text-primary);
 }
 
 .curated-payload .payload-description p {
@@ -246,19 +255,14 @@
     opacity: 1;
 }
 
-/* Curated Filter Badge */
-.filter-option input[value="curated"] + span {
+/* Expert Filter Badge */
+.filter-option input[value="expert"] + span {
     position: relative;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
-.filter-option input[value="curated"] + span::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 8px;
-    height: 8px;
-    background: #ffd700;
-    border-radius: 50%;
-    box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
+.filter-option input[value="expert"]:checked + span {
+    background: linear-gradient(135deg, var(--neon-green), var(--neon-cyan));
+    color: var(--text-inverse);
 }

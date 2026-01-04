@@ -24,7 +24,7 @@ class PayloadsManager {
 
   async loadPayloads() {
     try {
-      const response = await fetch('data/payloads.yaml');
+      const response = await fetch('data/payloads.yaml?v=' + Date.now());
       const yamlText = await response.text();
       const yamlData = jsyaml.load(yamlText) || {};
       this.payloads = yamlData.payloads || [];
@@ -69,8 +69,8 @@ class PayloadsManager {
       input.addEventListener('change', () => {
         this.filters.category = input.value;
 
-        // Clear other filters when switching to curated to avoid conflicts
-        if (input.value === 'curated') {
+        // Clear other filters when switching to expert to avoid conflicts
+        if (input.value === 'expert') {
           this.filters.context = [];
           this.filters.features = [];
           this.filters.search = '';
@@ -181,7 +181,8 @@ class PayloadsManager {
       // Category filter
       if (this.filters.category !== 'all') {
         const category = (payload.category || 'basic').toLowerCase();
-        if (category !== this.filters.category) {
+        const filterCategory = this.filters.category === 'expert' ? 'research' : this.filters.category;
+        if (category !== filterCategory) {
           return false;
         }
       }
@@ -256,11 +257,11 @@ class PayloadsManager {
 
   renderCardsView(container) {
     const cardsHTML = this.filteredPayloads.map((payload, index) => {
-      const isCurated = payload.category === 'curated';
-      const authorInfo = isCurated ? this.renderAuthorInfo(payload) : '';
+      const isExpert = payload.category === 'research';
+      const authorInfo = isExpert ? this.renderAuthorInfo(payload) : '';
 
       return `
-        <div class="payload-card ${isCurated ? 'curated-payload' : ''}">
+        <div class="payload-card ${isExpert ? 'curated-payload' : ''}">
           <div class="payload-header">
             <span class="payload-category">${this.escapeHtml(payload.category || 'XSS')}</span>
             <div class="payload-actions">
@@ -311,7 +312,7 @@ class PayloadsManager {
               `<a href="https://github.com/${githubUsername}" target="_blank" rel="noopener">${authorName}</a>` :
               authorName
             }
-            <span class="curated-badge">⭐</span>
+            <span class="curated-badge">🔬</span>
           </div>
           <div class="author-meta">
             ${githubUsername ? `@${githubUsername}` : ''} ${country !== 'Unknown' ? `• ${country}` : ''}

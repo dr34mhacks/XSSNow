@@ -69,6 +69,7 @@ Choose the most appropriate category for your payload:
 
 - **basic** - Simple, fundamental XSS vectors
 - **advanced** - Complex techniques requiring expertise
+- **research** - Well-researched, expertly validated payloads
 - **bypass** - Filter and encoding bypass methods
 - **waf** - Web Application Firewall evasion
 - **csp** - Content Security Policy bypasses
@@ -99,7 +100,8 @@ Choose the most appropriate category for your payload:
 ### **Recognition Levels:**
 - **🌟 New Contributor** - First payload accepted
 - **🔥 Active Contributor** - Multiple quality payloads
-- **⚡ Expert Contributor** - Advanced techniques and help others
+- **🔬 Expert Contributor** - Advanced research-grade techniques and mentoring
+- **⚡ Master Contributor** - Exceptional contributions and community leadership
 
 ---
 

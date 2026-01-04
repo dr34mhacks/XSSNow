@@ -20,7 +20,7 @@ class ContributorsManager {
 
     async loadPayloads() {
         try {
-            const response = await fetch('data/payloads.yaml', {
+            const response = await fetch('data/payloads.yaml?v=' + Date.now(), {
                 method: 'GET',
                 headers: {
                     'Accept': 'text/plain',

