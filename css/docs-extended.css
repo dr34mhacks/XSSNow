@@ -846,3 +846,295 @@
     padding: 1.5rem;
   }
 }
+
+/* Advanced Research Techniques Section - New CSS */
+.research-attribution {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.05));
+  border: 1px solid rgba(147, 51, 234, 0.3);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+.attribution-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.attribution-card h4 {
+  color: var(--neon-purple);
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.attribution-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.attribution-list li {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  border-left: 3px solid var(--neon-cyan);
+  color: var(--text-secondary);
+}
+
+.attribution-list strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.attribution-list a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.attribution-list a:hover {
+  color: var(--neon-green);
+  text-decoration: underline;
+}
+
+/* Advanced Techniques Grid */
+.advanced-techniques {
+  display: grid;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.technique-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.technique-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.technique-card:hover::before {
+  opacity: 1;
+}
+
+.technique-card:hover {
+  border-color: var(--neon-purple);
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.08), rgba(147, 51, 234, 0.02));
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(147, 51, 234, 0.15);
+}
+
+.technique-card h4 {
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.technique-card p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.technique-note {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-left: 4px solid var(--neon-green);
+}
+
+.technique-note p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.technique-note strong {
+  color: var(--neon-green);
+  font-weight: 600;
+}
+
+/* Research Methodology */
+.research-methodology {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(0, 255, 65, 0.02));
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.research-methodology h4 {
+  color: var(--neon-cyan);
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.research-methodology p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.methodology-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.methodology-list li {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  border-left: 3px solid var(--neon-cyan);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.methodology-list li:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateX(4px);
+  color: var(--text-primary);
+}
+
+.methodology-list strong {
+  color: var(--neon-cyan);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Defense Recommendations */
+.defense-recommendations {
+  background: linear-gradient(135deg, rgba(0, 255, 65, 0.05), rgba(34, 197, 94, 0.02));
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 3rem 0;
+}
+
+.defense-recommendations h4 {
+  color: var(--neon-green);
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.defense-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.defense-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.defense-item:hover {
+  background: rgba(0, 255, 65, 0.1);
+  border-color: var(--neon-green);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 255, 65, 0.1);
+}
+
+.defense-item h5 {
+  color: var(--neon-green);
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.defense-item p {
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+/* Mobile adjustments for new sections */
+@media (max-width: 768px) {
+  .advanced-techniques {
+    gap: 1.5rem;
+  }
+
+  .technique-card {
+    padding: 1.5rem;
+  }
+
+  .technique-card h4 {
+    font-size: 1.2rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .research-attribution,
+  .research-methodology,
+  .defense-recommendations {
+    padding: 1.5rem;
+  }
+
+  .defense-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .defense-item {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .technique-card {
+    padding: 1rem;
+  }
+
+  .technique-note {
+    padding: 0.75rem;
+  }
+
+  .research-attribution,
+  .research-methodology,
+  .defense-recommendations {
+    padding: 1rem;
+  }
+
+  .attribution-card {
+    padding: 1rem;
+  }
+}

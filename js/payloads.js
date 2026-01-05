@@ -248,6 +248,7 @@ class PayloadsManager {
           <p>Try adjusting your filters or search terms</p>
         </div>
       `;
+      this.ensureExportButtonVisible();
       return;
     }
 
@@ -258,6 +259,17 @@ class PayloadsManager {
     }
 
     this.setupPayloadEventListeners();
+    this.ensureExportButtonVisible();
+  }
+
+  ensureExportButtonVisible() {
+    // Ensure export button remains visible after view changes
+    const exportBtn = document.getElementById('downloadFiltered');
+    if (exportBtn) {
+      exportBtn.style.display = 'flex';
+      exportBtn.style.visibility = 'visible';
+      exportBtn.style.opacity = '1';
+    }
   }
 
   renderCardsView(container) {

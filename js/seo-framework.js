@@ -123,7 +123,7 @@ class SEOFramework {
         const metadataMap = {
             home: {
                 title: 'XSSNow - Ultimate XSS Payload Arsenal & Security Research Platform',
-                description: 'Comprehensive XSS vulnerability testing platform with 876+ payloads, advanced generator, bypass techniques, and security research tools. Perfect for penetration testing and bug bounty hunting.',
+                description: 'Comprehensive XSS vulnerability testing platform with 1000+ payloads, advanced generator, bypass techniques, and security research tools. Perfect for penetration testing and bug bounty hunting.',
                 keywords: this.keywords
             },
             documentation: {
@@ -132,7 +132,7 @@ class SEOFramework {
                 keywords: this.keywords
             },
             'payload-database': {
-                title: 'XSS Payload Database - 876+ Cross-Site Scripting Vectors & Exploits',
+                title: 'XSS Payload Database - 1000+ Cross-Site Scripting Vectors & Exploits',
                 description: 'Extensive collection of XSS payloads with advanced filtering, context-aware vectors, and WAF bypass techniques. Updated database for security testing.',
                 keywords: this.keywords
             },
@@ -306,12 +306,12 @@ class SEOFramework {
         const relatedContentMap = {
             home: [
                 { title: 'XSS Documentation', url: '/docs.html', description: 'Complete security guide' },
-                { title: 'Payload Database', url: '/payloads.html', description: '876+ XSS vectors' },
+                { title: 'Payload Database', url: '/payloads.html', description: '1000+ XSS vectors' },
                 { title: 'Payload Generator', url: '/xss-payload-generator.html', description: 'Custom payload creation' }
             ],
             documentation: [
                 { title: 'Try Payload Generator', url: '/xss-payload-generator.html', description: 'Generate custom payloads' },
-                { title: 'Browse Payload Database', url: '/payloads.html', description: 'Explore 876+ payloads' },
+                { title: 'Browse Payload Database', url: '/payloads.html', description: 'Explore 1000+ payloads' },
                 { title: 'Meet Contributors', url: '/contributors.html', description: 'Security research team' }
             ],
             'payload-database': [

