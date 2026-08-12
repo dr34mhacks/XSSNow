@@ -1,11 +1,37 @@
-# XSSNow - Robots.txt
+# XSSNow - XSS Payloads Database for Security Research
 # https://xssnow.in
 
 User-agent: *
 Allow: /
+Crawl-delay: 1
 
-# Sitemap
+# Allow important assets for SEO and social sharing
+Allow: /assets/
+Allow: /assets/ninja.svg
+Allow: /assets/xss_now_logo.png
+Allow: /manifest.json
+Allow: /data/payloads.yaml
+
+# Disallow resource files to improve crawl efficiency
+Disallow: /js/
+Disallow: /css/
+
+# Disallow development files
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Sitemap location
 Sitemap: https://xssnow.in/sitemap.xml
+
+# Googlebot specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot specific rules
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
 
 # Allow AI crawlers for GEO optimization
 User-agent: GPTBot
@@ -23,8 +49,5 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
+# XSSNow - The ultimate XSS payloads list and cross-site scripting cheat sheet
+# For authorized security testing and educational purposes only

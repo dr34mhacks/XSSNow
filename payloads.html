@@ -8,25 +8,28 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>XSS Payload Database - 1000+ Cross-Site Scripting Payloads & Cheat Sheet | XSSNow</title>
-    <meta name="description" content="Free XSS payload database with 1000+ curated payloads. Filter by context (DOM, Reflected, Stored), WAF bypass techniques, encoding evasions, and polyglot payloads. Updated XSS cheat sheet for bug bounty.">
+    <title>XSS Payloads List - 1000+ Cross-Site Scripting Payloads & XSS Cheat Sheet 2026</title>
+    <meta name="description" content="Complete XSS payloads list with 1000+ cross-site scripting payloads. DOM XSS, Reflected XSS, Stored XSS, WAF bypass payloads, polyglot XSS & filter evasion. The ultimate XSS cheat sheet for bug bounty hunters. Free & updated 2026.">
 
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="XSS Payload Database - 1000+ Curated Payloads | XSSNow">
-    <meta property="og:description" content="Free XSS payload database with 1000+ payloads. Filter by context, WAF bypass, and encoding techniques for penetration testing.">
+    <meta property="og:title" content="XSS Payloads List - 1000+ Cross-Site Scripting Payloads 2026">
+    <meta property="og:description" content="Complete XSS payloads list with 1000+ cross-site scripting payloads. DOM XSS, Reflected XSS, Stored XSS, WAF bypass & polyglot payloads. Free XSS cheat sheet.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://xssnow.in/payloads.html">
     <meta property="og:image" content="https://xssnow.in/assets/xss_now_logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="XSSNow">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="XSS Payload Database - 1000+ Payloads | XSSNow">
-    <meta name="twitter:description" content="Free XSS cheat sheet with 1000+ payloads for bug bounty and penetration testing.">
+    <meta name="twitter:title" content="XSS Payloads List - 1000+ Cross-Site Scripting Payloads">
+    <meta name="twitter:description" content="Free XSS payloads list & cheat sheet with 1000+ payloads. DOM, Reflected, Stored XSS & WAF bypass for bug bounty.">
     <meta name="twitter:image" content="https://xssnow.in/assets/xss_now_logo.png">
+    <meta name="twitter:creator" content="@dr34mhacks">
 
     <!-- Additional SEO -->
-    <meta name="keywords" content="XSS Payloads, XSS Cheat Sheet, Cross-Site Scripting Payloads, XSS Attack Vectors, DOM XSS Payloads, Reflected XSS, Stored XSS, XSS Filter Bypass, WAF Bypass Payloads, XSS Polyglot, HTML Injection, JavaScript Injection, Event Handler XSS, SVG XSS, XSS Bug Bounty, Penetration Testing Payloads">
+    <meta name="keywords" content="XSS Payloads, XSS Payloads List, XSS Cheat Sheet, Cross-Site Scripting Payloads, XSS Payload Database, DOM XSS Payloads, Reflected XSS Payloads, Stored XSS Payloads, XSS Filter Bypass, WAF Bypass Payloads, XSS Polyglot, HTML Injection Payloads, JavaScript Injection, Event Handler XSS, SVG XSS Payloads, XSS Bug Bounty, Penetration Testing Payloads, XSS Attack Vectors, XSS Examples, XSS Code, Alert XSS, Script Injection">
     <meta name="author" content="Sid Joshi (dr34mhacks)">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://xssnow.in/payloads.html">
@@ -36,17 +39,49 @@
     {
         "@context": "https://schema.org",
         "@type": "Dataset",
-        "name": "XSSNow XSS Payload Database",
-        "description": "Comprehensive database of 1000+ XSS payloads for security testing, categorized by context and bypass technique.",
+        "name": "XSS Payloads List - Complete Cross-Site Scripting Database",
+        "alternateName": ["XSS Cheat Sheet", "XSS Payload Database", "Cross-Site Scripting Payloads"],
+        "description": "Comprehensive XSS payloads list with 1000+ cross-site scripting payloads for security testing. Includes DOM XSS, Reflected XSS, Stored XSS, WAF bypass, CSP bypass, polyglot payloads, and filter evasion techniques.",
         "url": "https://xssnow.in/payloads.html",
-        "keywords": ["XSS", "Cross-Site Scripting", "Security Testing", "Penetration Testing"],
+        "keywords": ["XSS Payloads", "XSS Payloads List", "Cross-Site Scripting", "XSS Cheat Sheet", "DOM XSS", "Reflected XSS", "Stored XSS", "WAF Bypass", "Security Testing", "Penetration Testing", "Bug Bounty"],
         "creator": {
             "@type": "Person",
             "name": "Sid Joshi",
             "alternateName": "dr34mhacks",
             "url": "https://github.com/dr34mhacks"
         },
-        "license": "https://opensource.org/licenses/MIT"
+        "license": "https://opensource.org/licenses/MIT",
+        "datePublished": "2025-01-01",
+        "dateModified": "2026-08-12",
+        "version": "1.1",
+        "isAccessibleForFree": true,
+        "distribution": {
+            "@type": "DataDownload",
+            "encodingFormat": "text/yaml",
+            "contentUrl": "https://xssnow.in/data/payloads.yaml"
+        }
+    }
+    </script>
+    <!-- ItemList Schema for XSS Payload Categories -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "XSS Payload Categories",
+        "description": "Categories of XSS payloads available in the database",
+        "numberOfItems": 10,
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Basic XSS Payloads", "description": "Simple script and alert-based XSS payloads"},
+            {"@type": "ListItem", "position": 2, "name": "DOM XSS Payloads", "description": "Payloads targeting DOM-based XSS vulnerabilities"},
+            {"@type": "ListItem", "position": 3, "name": "Reflected XSS Payloads", "description": "Payloads for reflected cross-site scripting attacks"},
+            {"@type": "ListItem", "position": 4, "name": "Stored XSS Payloads", "description": "Persistent XSS payloads for stored attacks"},
+            {"@type": "ListItem", "position": 5, "name": "WAF Bypass Payloads", "description": "XSS payloads to bypass web application firewalls"},
+            {"@type": "ListItem", "position": 6, "name": "CSP Bypass Payloads", "description": "Payloads to bypass Content Security Policy"},
+            {"@type": "ListItem", "position": 7, "name": "Event Handler XSS", "description": "Payloads using onerror, onload, onclick events"},
+            {"@type": "ListItem", "position": 8, "name": "SVG XSS Payloads", "description": "XSS through SVG elements and attributes"},
+            {"@type": "ListItem", "position": 9, "name": "Polyglot XSS Payloads", "description": "Multi-context XSS payloads that work everywhere"},
+            {"@type": "ListItem", "position": 10, "name": "Encoded XSS Payloads", "description": "URL, HTML, and Unicode encoded XSS payloads"}
+        ]
     }
     </script>
     <script type="application/ld+json">
